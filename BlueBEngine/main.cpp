@@ -1,9 +1,11 @@
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#include "Application.h"
+#include "Debug.h"
+using namespace BBB;
 
 int main()
 {
-
+	Application application;
+	application.Run();
 
 	return 0;
 }
