@@ -148,6 +148,7 @@
     <ClCompile Include="..\Includes\glad.c" />
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="AppWindow.cpp" />
+    <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Debug.cpp" />
   </ItemGroup>
@@ -156,6 +157,8 @@
     <ClInclude Include="AppWindow.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="Graphics.h" />
+    <ClInclude Include="Input.h" />
+    <ClInclude Include="KeyCallbacks.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
