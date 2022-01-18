@@ -1,10 +1,10 @@
-#include "Application.h"
+#include "TestApplication.h"
 #include "Debug.h"
 using namespace BBB;
 
 int main()
 {
-	Application application;
+	TestApplication application;
 	application.Run();
 
 	return 0;

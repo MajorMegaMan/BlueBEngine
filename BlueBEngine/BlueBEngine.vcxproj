@@ -148,17 +148,29 @@
     <ClCompile Include="..\Includes\glad.c" />
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="AppWindow.cpp" />
+    <ClCompile Include="File.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Debug.cpp" />
+    <ClCompile Include="ShaderProgram.cpp" />
+    <ClCompile Include="TestApplication.cpp" />
+    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="VertexArrayObject.cpp" />
+    <ClCompile Include="VertexBufferObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
     <ClInclude Include="AppWindow.h" />
     <ClInclude Include="Debug.h" />
+    <ClInclude Include="File.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="KeyCallbacks.h" />
+    <ClInclude Include="ShaderProgram.h" />
+    <ClInclude Include="TestApplication.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="VertexArrayObject.h" />
+    <ClInclude Include="VertexBufferObject.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
