@@ -8,7 +8,7 @@ namespace BBB
 		class VertexArrayObject
 		{
 			// this is the handle for the vertex buffer object
-			GLuint VAO;
+			GLuint VAO = -1;
 
 		public:
 			void GenArrays();

@@ -14,7 +14,7 @@ namespace BBB
 			glBindBuffer(GL_ARRAY_BUFFER, VBO);
 		}
 
-		void VertexBufferObject::SetData(int size, void* data, int usage)
+		void VertexBufferObject::SetData(GLsizeiptr size, void* data, GLenum usage)
 		{
 			glBufferData(GL_ARRAY_BUFFER, size, data, usage);
 		}

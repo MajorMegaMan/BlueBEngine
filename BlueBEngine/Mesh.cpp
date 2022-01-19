@@ -2,15 +2,26 @@
 
 namespace BBB
 {
-	Mesh::Mesh()
+	void Mesh::Generate()
 	{
 		VAO.GenArrays();
 		VBO.GenBuffers();
 	}
-	Mesh::~Mesh()
+
+	void Mesh::Delete()
 	{
 		VBO.DeleteBuffers();
 		VAO.DeleteArrays();
+	}
+
+	Mesh::Mesh()
+	{
+		
+	}
+
+	Mesh::~Mesh()
+	{
+		
 	}
 
 	void Mesh::SetVertices(float* verticesArray, int size)
@@ -20,7 +31,7 @@ namespace BBB
 		VBO.SetData(size * sizeof(float), verticesArray, GL_STATIC_DRAW);
 	}
 
-	void Mesh::VertexAttributePointer(int layoutIndex, int size, int type, int normalized, int stride, int pointer)
+	void Mesh::VertexAttributePointer(GLuint layoutIndex, GLint size, GLenum type, GLboolean normalized, GLsizei stride, int pointer)
 	{
 		glVertexAttribPointer(layoutIndex, size, type, normalized, stride, (void*)pointer);
 		glEnableVertexAttribArray(layoutIndex);

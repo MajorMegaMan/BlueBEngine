@@ -19,14 +19,20 @@
     <Filter Include="Source Files\Application">
       <UniqueIdentifier>{feb94df1-124d-4f15-a131-8987a96e7b00}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Vertex">
-      <UniqueIdentifier>{54645e56-04cf-467e-9aa0-f39d9a5b76c1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Utilities">
       <UniqueIdentifier>{af501ef5-cfb9-4c9f-964b-53899aba1e1b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Shader">
       <UniqueIdentifier>{79bd1227-bede-4821-86c5-ba7b69df81a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Mesh">
+      <UniqueIdentifier>{54645e56-04cf-467e-9aa0-f39d9a5b76c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Mesh\Layouts">
+      <UniqueIdentifier>{f6fc62ae-a0b9-4f57-8925-c7552ab1fe8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Mesh\VertexObjects">
+      <UniqueIdentifier>{b38b2f40-466c-436c-9e4c-712099724737}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -48,9 +54,6 @@
     <ClCompile Include="Input.cpp">
       <Filter>Source Files\Application</Filter>
     </ClCompile>
-    <ClCompile Include="VertexBufferObject.cpp">
-      <Filter>Source Files\Vertex</Filter>
-    </ClCompile>
     <ClCompile Include="TestApplication.cpp">
       <Filter>Source Files\Debug</Filter>
     </ClCompile>
@@ -60,11 +63,29 @@
     <ClCompile Include="ShaderProgram.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="VertexArrayObject.cpp">
-      <Filter>Source Files\Vertex</Filter>
-    </ClCompile>
     <ClCompile Include="Mesh.cpp">
-      <Filter>Source Files\Vertex</Filter>
+      <Filter>Source Files\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="IndexedMesh.cpp">
+      <Filter>Source Files\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexAttribute.cpp">
+      <Filter>Source Files\Mesh\Layouts</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexContainer.cpp">
+      <Filter>Source Files\Mesh\Layouts</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexLayout.cpp">
+      <Filter>Source Files\Mesh\Layouts</Filter>
+    </ClCompile>
+    <ClCompile Include="ElementBufferObject.cpp">
+      <Filter>Source Files\Mesh\VertexObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexArrayObject.cpp">
+      <Filter>Source Files\Mesh\VertexObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexBufferObject.cpp">
+      <Filter>Source Files\Mesh\VertexObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -89,20 +110,35 @@
     <ClInclude Include="TestApplication.h">
       <Filter>Source Files\Debug</Filter>
     </ClInclude>
-    <ClInclude Include="VertexBufferObject.h">
-      <Filter>Source Files\Vertex</Filter>
-    </ClInclude>
     <ClInclude Include="File.h">
       <Filter>Source Files\Utilities</Filter>
     </ClInclude>
     <ClInclude Include="ShaderProgram.h">
       <Filter>Source Files\Shader</Filter>
     </ClInclude>
-    <ClInclude Include="VertexArrayObject.h">
-      <Filter>Source Files\Vertex</Filter>
-    </ClInclude>
     <ClInclude Include="Mesh.h">
-      <Filter>Source Files\Vertex</Filter>
+      <Filter>Source Files\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="IndexedMesh.h">
+      <Filter>Source Files\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexAttribute.h">
+      <Filter>Source Files\Mesh\Layouts</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexContainer.h">
+      <Filter>Source Files\Mesh\Layouts</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexLayout.h">
+      <Filter>Source Files\Mesh\Layouts</Filter>
+    </ClInclude>
+    <ClInclude Include="ElementBufferObject.h">
+      <Filter>Source Files\Mesh\VertexObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexArrayObject.h">
+      <Filter>Source Files\Mesh\VertexObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexBufferObject.h">
+      <Filter>Source Files\Mesh\VertexObjects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

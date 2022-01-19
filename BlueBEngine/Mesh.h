@@ -6,10 +6,14 @@ namespace BBB
 {
 	class Mesh
 	{
+	protected:
 		GLVertex::VertexArrayObject VAO;
 		GLVertex::VertexBufferObject VBO;
 
+
 	public:
+		virtual void Generate();
+		virtual void Delete();
 
 		Mesh();
 		Mesh(const Mesh& other) = delete;
@@ -18,7 +22,7 @@ namespace BBB
 
 		void SetVertices(float* verticesArray, int size);
 
-		void VertexAttributePointer(int layoutIndex, int size, int type, int normalized, int stride, int pointer);
+		void VertexAttributePointer(GLuint layoutIndex, GLint size, GLenum type, GLboolean normalized, GLsizei stride, int pointer);
 
 		void Bind();
 

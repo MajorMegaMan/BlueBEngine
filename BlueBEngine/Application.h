@@ -1,7 +1,8 @@
 #pragma once
 #include "AppWindow.h"
-#include "Mesh.h"
+#include "IndexedMesh.h"
 #include "ShaderProgram.h"
+#include "VertexContainer.h"
 
 namespace BBB
 {

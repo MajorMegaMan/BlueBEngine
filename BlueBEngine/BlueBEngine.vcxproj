@@ -148,7 +148,9 @@
     <ClCompile Include="..\Includes\glad.c" />
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="AppWindow.cpp" />
+    <ClCompile Include="ElementBufferObject.cpp" />
     <ClCompile Include="File.cpp" />
+    <ClCompile Include="IndexedMesh.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Debug.cpp" />
@@ -157,13 +159,18 @@
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="VertexArrayObject.cpp" />
     <ClCompile Include="VertexBufferObject.cpp" />
+    <ClCompile Include="VertexAttribute.cpp" />
+    <ClCompile Include="VertexContainer.cpp" />
+    <ClCompile Include="VertexLayout.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
     <ClInclude Include="AppWindow.h" />
     <ClInclude Include="Debug.h" />
+    <ClInclude Include="ElementBufferObject.h" />
     <ClInclude Include="File.h" />
     <ClInclude Include="Graphics.h" />
+    <ClInclude Include="IndexedMesh.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="KeyCallbacks.h" />
     <ClInclude Include="ShaderProgram.h" />
@@ -171,6 +178,9 @@
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="VertexArrayObject.h" />
     <ClInclude Include="VertexBufferObject.h" />
+    <ClInclude Include="VertexAttribute.h" />
+    <ClInclude Include="VertexContainer.h" />
+    <ClInclude Include="VertexLayout.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

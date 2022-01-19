@@ -6,7 +6,9 @@ using namespace BBB;
 class TestApplication : public Application
 {
 	ShaderProgram m_shader;
-	Mesh m_testMesh;
+	IndexedMesh m_testMesh;
+
+	VertexLayout m_vertexLayout;
 
 	void Init() override;
 
@@ -17,4 +19,11 @@ class TestApplication : public Application
 	void Update() override;
 
 	void Render() override;
+
+	// Debugging shit
+	void GenerateMesh();
+
+	void InitialiseLayouts();
+
+	void SetLayoutData(VertexContainer& container);
 };

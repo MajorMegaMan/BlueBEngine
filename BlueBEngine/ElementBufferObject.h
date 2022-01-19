@@ -5,10 +5,10 @@ namespace BBB
 {
 	namespace GLVertex
 	{
-		class VertexBufferObject
+		class ElementBufferObject
 		{
 			// this is the handle for the vertex buffer object
-			GLuint VBO = -1;
+			GLuint EBO = -1;
 
 		public:
 			void GenBuffers();
