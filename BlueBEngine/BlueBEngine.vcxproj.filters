@@ -140,5 +140,8 @@
     <ClInclude Include="VertexBufferObject.h">
       <Filter>Source Files\Mesh\VertexObjects</Filter>
     </ClInclude>
+    <ClInclude Include="Maths.h">
+      <Filter>Source Files\Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

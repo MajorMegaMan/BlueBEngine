@@ -1,5 +1,6 @@
 #include "TestApplication.h"
 #include "Debug.h"
+#include "Maths.h"
 
 #define TEST_VERT_FILE "basic.vert"
 #define TEST_FRAG_FILE "basic.frag"
@@ -34,8 +35,8 @@ void TestApplication::Init()
 	// must applya directly after SetVertices as this does not conatin another Rebind of the desired VAO
 	m_testMesh.SetIndices(indices, 6);
 
-	float vec4[4] = { 0.0f, 1.0f, 1.0f, 1.0f };
-	m_shader.SetUniform4f("ourColor", vec4);
+	//glm::vec4 vec4 = { 0.0f, 1.0f, 1.0f, 1.0f };
+	//m_shader.SetUniform4f("ourColor", (float*)&vec4);
 
 	m_vertexLayout.SetAttribPointers();
 	m_vertexLayout.Enable();
@@ -72,7 +73,7 @@ void TestApplication::GenerateMesh()
 void TestApplication::InitialiseLayouts()
 {
 	// Create Layout attributes
-	m_vertexLayout.Init(2, 6 * sizeof(float));
+	m_vertexLayout.Init(2);
 	auto layouts = m_vertexLayout.GetBegin();
 
 	// Vec3 attrib position
@@ -80,24 +81,26 @@ void TestApplication::InitialiseLayouts()
 
 	// Vec3 attrib colour
 	layouts[1].SetValues(3, GL_FLOAT, GL_FALSE, sizeof(float));
+
+	m_vertexLayout.CalculateStride();
 }
 
 void TestApplication::SetLayoutData(VertexContainer& container)
 {
 	// positions
-	float vertices[] = {
-	 0.5f,  0.5f, 0.0f,  // top right
-	 0.5f, -0.5f, 0.0f,  // bottom right
-	-0.5f, -0.5f, 0.0f,  // bottom left
-	-0.5f,  0.5f, 0.0f   // top left 
+	glm::vec3 vertices[] = {
+	{ 0.5f,  0.5f, 0.0f},  // top right
+	{ 0.5f, -0.5f, 0.0f},  // bottom right
+	{-0.5f, -0.5f, 0.0f},  // bottom left
+	{-0.5f,  0.5f, 0.0f}   // top left 
 	};
 
 	// colours
-	float colours[] = {
-	 1.0f,  0.0f, 0.0f,  // top right
-	 0.0f,  1.0f, 0.0f,  // bottom right
-	 0.0f,  0.0f, 1.0f,  // bottom left
-	 1.0f,  0.0f, 1.0f   // top left 
+	glm::vec3 colours[] = {
+	 {1.0f,  0.0f, 0.0f},  // top right
+	 {0.0f,  1.0f, 0.0f},  // bottom right
+	 {0.0f,  0.0f, 1.0f},  // bottom left
+	 {1.0f,  0.0f, 1.0f}   // top left 
 	};
 
 	// initialise vertices with layouts
@@ -106,12 +109,12 @@ void TestApplication::SetLayoutData(VertexContainer& container)
 	// Set positions attribute in container
 	for (int i = 0; i < 4; i++)
 	{
-		container.SetVertex(i, 0, vertices + (i * 3));
+		container.SetVertex(i, 0, vertices + i);
 	}
 
 	// Set colours attribute in container
 	for (int i = 0; i < 4; i++)
 	{
-		container.SetVertex(i, 1, colours + (i * 3));
+		container.SetVertex(i, 1, colours + i);
 	}
 }

@@ -173,6 +173,7 @@
     <ClInclude Include="IndexedMesh.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="KeyCallbacks.h" />
+    <ClInclude Include="Maths.h" />
     <ClInclude Include="ShaderProgram.h" />
     <ClInclude Include="TestApplication.h" />
     <ClInclude Include="Mesh.h" />

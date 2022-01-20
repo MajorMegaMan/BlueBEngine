@@ -12,11 +12,10 @@ namespace BBB
 		}
 	}
 
-	void VertexLayout::Init(int size, GLsizei stride)
+	void VertexLayout::Init(int size)
 	{
 		m_layoutArray = new VertexAttibute[size];
 		m_size = size;
-		m_stride = stride;
 	}
 
 	VertexAttibute* VertexLayout::GetBegin()
@@ -27,6 +26,11 @@ namespace BBB
 	VertexAttibute& VertexLayout::GetAttribute(int index)
 	{
 		return m_layoutArray[index];
+	}
+
+	void VertexLayout::CalculateStride()
+	{
+		m_stride = FindStrideToLayout(m_size);
 	}
 
 	int VertexLayout::GetLayoutSize(int index) const
@@ -70,7 +74,7 @@ namespace BBB
 		for (int i = 0; i < m_size; i++)
 		{
 			m_layoutArray[i].SetPointer(i, m_stride, runningOffset);
-			runningOffset += m_layoutArray[i].typeSize * m_layoutArray[i].size;
+			runningOffset += FindLayoutStride(i);
 		}
 	}
 	void VertexLayout::Enable()

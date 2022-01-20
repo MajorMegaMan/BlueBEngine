@@ -19,9 +19,11 @@ namespace BBB
 		VertexLayout& operator=(const VertexLayout& other) = delete;
 		~VertexLayout();
 
-		void Init(int size, GLsizei stride);
+		void Init(int size);
 		VertexAttibute* GetBegin();
 		VertexAttibute& GetAttribute(int index);
+		void CalculateStride();
+
 
 		int GetLayoutSize(int index) const;
 		int FindTotalSize() const;
