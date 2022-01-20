@@ -40,11 +40,14 @@ void TestApplication::Init()
 
 	m_vertexLayout.SetAttribPointers();
 	m_vertexLayout.Enable();
+
+	m_testTexture.LoadImage("container.jpg");
 }
 
 void TestApplication::Close()
 {
 	m_testMesh.Delete();
+	m_testTexture.DeleteTexture();
 }
 
 void TestApplication::SetKeyInputs()
@@ -62,6 +65,7 @@ void TestApplication::Render()
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	m_shader.UseShaderProgram();
+	m_testTexture.Bind();
 	m_testMesh.IDraw(6, GL_UNSIGNED_INT);
 }
 
@@ -73,7 +77,7 @@ void TestApplication::GenerateMesh()
 void TestApplication::InitialiseLayouts()
 {
 	// Create Layout attributes
-	m_vertexLayout.Init(2);
+	m_vertexLayout.Init(3);
 	auto layouts = m_vertexLayout.GetBegin();
 
 	// Vec3 attrib position
@@ -81,6 +85,9 @@ void TestApplication::InitialiseLayouts()
 
 	// Vec3 attrib colour
 	layouts[1].SetValues(3, GL_FLOAT, GL_FALSE, sizeof(float));
+
+	// Vec2 attrib texture UVs
+	layouts[2].SetValues(2, GL_FLOAT, GL_FALSE, sizeof(float));
 
 	m_vertexLayout.CalculateStride();
 }
@@ -103,6 +110,13 @@ void TestApplication::SetLayoutData(VertexContainer& container)
 	 {1.0f,  0.0f, 1.0f}   // top left 
 	};
 
+	glm::vec2 UVs[] = {
+	{1.0f,  1.0f},  // top right
+	{1.0f,  0.0f},  // bottom right
+	{0.0f,  0.0f},  // bottom left
+	{0.0f,  1.0f}   // top left 
+	};
+
 	// initialise vertices with layouts
 	container.Init(m_vertexLayout, 4);
 
@@ -116,5 +130,11 @@ void TestApplication::SetLayoutData(VertexContainer& container)
 	for (int i = 0; i < 4; i++)
 	{
 		container.SetVertex(i, 1, colours + i);
+	}
+
+	// Set colours attribute in container
+	for (int i = 0; i < 4; i++)
+	{
+		container.SetVertex(i, 2, UVs + i);
 	}
 }

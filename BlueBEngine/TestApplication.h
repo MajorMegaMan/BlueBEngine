@@ -7,6 +7,7 @@ class TestApplication : public Application
 {
 	ShaderProgram m_shader;
 	IndexedMesh m_testMesh;
+	Texture m_testTexture;
 
 	VertexLayout m_vertexLayout;
 

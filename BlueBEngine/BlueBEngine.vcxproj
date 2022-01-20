@@ -157,6 +157,7 @@
     <ClCompile Include="ShaderProgram.cpp" />
     <ClCompile Include="TestApplication.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Texture.cpp" />
     <ClCompile Include="VertexArrayObject.cpp" />
     <ClCompile Include="VertexBufferObject.cpp" />
     <ClCompile Include="VertexAttribute.cpp" />
@@ -177,6 +178,7 @@
     <ClInclude Include="ShaderProgram.h" />
     <ClInclude Include="TestApplication.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Texture.h" />
     <ClInclude Include="VertexArrayObject.h" />
     <ClInclude Include="VertexBufferObject.h" />
     <ClInclude Include="VertexAttribute.h" />
