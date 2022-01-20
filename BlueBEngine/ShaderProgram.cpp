@@ -2,14 +2,11 @@
 #include "File.h"
 #include "Debug.h"
 
-#define TEST_VERT_FILE "basic.vert"
-#define TEST_FRAG_FILE "basic.frag"
-
 namespace BBB
 {
-	ShaderProgram::ShaderProgram()
+	ShaderProgram::ShaderProgram(const char* vertFileName, const char* fragFileName)
 	{
-		CreateShaderProgram();
+		CreateShaderProgram(vertFileName, fragFileName);
 	}
 
 	ShaderProgram::~ShaderProgram()
@@ -22,22 +19,38 @@ namespace BBB
 		glUseProgram(m_shaderProgram);
 	}
 
-	void ShaderProgram::CreateShaderProgram()
+	int ShaderProgram::GetUniformLocation(const char* uniformName)
+	{
+		return glGetUniformLocation(m_shaderProgram, uniformName);
+	}
+
+	void ShaderProgram::SetUniform4f(const char* uniformName, float* vec4)
+	{
+		UseShaderProgram();
+		SetUniform4f(GetUniformLocation(uniformName), vec4);
+	}
+
+	void ShaderProgram::SetUniform4f(int location, float* vec4)
+	{
+		glUniform4f(location, vec4[0], vec4[1], vec4[2], vec4[3]);
+	}
+
+	void ShaderProgram::CreateShaderProgram(const char* vertFileName, const char* fragFileName)
 	{
 		GLuint vertexShader;
 		GLuint fragmentShader;
 
-		CreateShader(vertexShader, GL_VERTEX_SHADER, TEST_VERT_FILE);
-		LogShader(vertexShader, "Vertex Shader", TEST_VERT_FILE);
+		CreateShader(vertexShader, GL_VERTEX_SHADER, vertFileName);
+		LogShader(vertexShader, "Vertex Shader", vertFileName);
 
-		CreateShader(fragmentShader, GL_FRAGMENT_SHADER, TEST_FRAG_FILE);
-		LogShader(fragmentShader, "Fragment Shader", TEST_FRAG_FILE);
+		CreateShader(fragmentShader, GL_FRAGMENT_SHADER, fragFileName);
+		LogShader(fragmentShader, "Fragment Shader", fragFileName);
 
 		m_shaderProgram = glCreateProgram();
 		glAttachShader(m_shaderProgram, vertexShader);
 		glAttachShader(m_shaderProgram, fragmentShader);
 		glLinkProgram(m_shaderProgram);
-		LogProgram(m_shaderProgram, TEST_VERT_FILE, TEST_FRAG_FILE);
+		LogProgram(m_shaderProgram, vertFileName, fragFileName);
 
 		glDeleteShader(vertexShader);
 		glDeleteShader(fragmentShader);

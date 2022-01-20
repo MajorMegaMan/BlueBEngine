@@ -12,10 +12,11 @@ namespace BBB
 		}
 	}
 
-	void VertexLayout::Init(int size)
+	void VertexLayout::Init(int size, GLsizei stride)
 	{
 		m_layoutArray = new VertexAttibute[size];
 		m_size = size;
+		m_stride = stride;
 	}
 
 	VertexAttibute* VertexLayout::GetBegin()
@@ -43,37 +44,33 @@ namespace BBB
 		return totalSize;
 	}
 
-	int VertexLayout::GetLayoutStride(int index) const
+	int VertexLayout::GetStride() const
 	{
-		return m_layoutArray[index].stride;
+		return m_stride;
 	}
 
-	int VertexLayout::FindStrideToLayout(int index) const
+	int VertexLayout::FindStrideToLayout(int layoutIndex) const
 	{
-		int stride = 0;
-		for (int i = 0; i < index; i++)
+		int currentStride = 0;
+		for (int i = 0; i < layoutIndex; i++)
 		{
-			stride += m_layoutArray[i].stride;
+			currentStride += FindLayoutStride(i);
 		}
-		return stride;
+		return currentStride;
 	}
 
-	int VertexLayout::FindTotalStride() const
+	int VertexLayout::FindLayoutStride(int layoutIndex) const
 	{
-		int totalStride = 0;
-		for (int i = 0; i < m_size; i++)
-		{
-			totalStride += m_layoutArray[i].stride;
-		}
-		return totalStride;
+		return m_layoutArray[layoutIndex].typeSize * m_layoutArray[layoutIndex].size;
 	}
+
 	void VertexLayout::SetAttribPointers()
 	{
 		int runningOffset = 0;
 		for (int i = 0; i < m_size; i++)
 		{
-			m_layoutArray[i].SetPointer(i, runningOffset);
-			runningOffset += m_layoutArray[i].stride;
+			m_layoutArray[i].SetPointer(i, m_stride, runningOffset);
+			runningOffset += m_layoutArray[i].typeSize * m_layoutArray[i].size;
 		}
 	}
 	void VertexLayout::Enable()

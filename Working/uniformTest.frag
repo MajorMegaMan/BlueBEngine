@@ -7,5 +7,5 @@ uniform vec4 ourColor; // we set this variable in the OpenGL code.
 
 void main()
 {
-    FragColor = vertexColor;
+    FragColor = ourColor;
 } 

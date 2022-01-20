@@ -1,13 +1,17 @@
 #include "TestApplication.h"
 #include "Debug.h"
 
+#define TEST_VERT_FILE "basic.vert"
+#define TEST_FRAG_FILE "basic.frag"
+#define TEST_UNIFORM_FRAG "uniformTest.frag"
+
+TestApplication::TestApplication() : m_shader(TEST_VERT_FILE, TEST_FRAG_FILE)
+{
+	
+}
+
 void TestApplication::Init()
 {
-	unsigned int indices[] = {  // note that we start from 0!
-		0, 1, 3,   // first triangle
-		1, 2, 3    // second triangle
-	};
-
 	GenerateMesh();
 	// Apply vertices to mesh
 
@@ -21,9 +25,17 @@ void TestApplication::Init()
 	// Send the container variables to the mesh
 	container.ApplyToMesh(m_testMesh);
 
+	unsigned int indices[] = {  // note that we start from 0!
+		0, 1, 3,   // first triangle
+		1, 2, 3    // second triangle
+	};
+
 	// apply indices to mesh
 	// must applya directly after SetVertices as this does not conatin another Rebind of the desired VAO
 	m_testMesh.SetIndices(indices, 6);
+
+	float vec4[4] = { 0.0f, 1.0f, 1.0f, 1.0f };
+	m_shader.SetUniform4f("ourColor", vec4);
 
 	m_vertexLayout.SetAttribPointers();
 	m_vertexLayout.Enable();
@@ -60,10 +72,14 @@ void TestApplication::GenerateMesh()
 void TestApplication::InitialiseLayouts()
 {
 	// Create Layout attributes
-	m_vertexLayout.Init(1);
-	auto vec3Attrib = m_vertexLayout.GetBegin();
+	m_vertexLayout.Init(2, 6 * sizeof(float));
+	auto layouts = m_vertexLayout.GetBegin();
+
 	// Vec3 attrib position
-	vec3Attrib->SetValues(3, GL_FLOAT, GL_FALSE, 3 * sizeof(float));
+	layouts[0].SetValues(3, GL_FLOAT, GL_FALSE, sizeof(float));
+
+	// Vec3 attrib colour
+	layouts[1].SetValues(3, GL_FLOAT, GL_FALSE, sizeof(float));
 }
 
 void TestApplication::SetLayoutData(VertexContainer& container)
@@ -76,6 +92,14 @@ void TestApplication::SetLayoutData(VertexContainer& container)
 	-0.5f,  0.5f, 0.0f   // top left 
 	};
 
+	// colours
+	float colours[] = {
+	 1.0f,  0.0f, 0.0f,  // top right
+	 0.0f,  1.0f, 0.0f,  // bottom right
+	 0.0f,  0.0f, 1.0f,  // bottom left
+	 1.0f,  0.0f, 1.0f   // top left 
+	};
+
 	// initialise vertices with layouts
 	container.Init(m_vertexLayout, 4);
 
@@ -83,5 +107,11 @@ void TestApplication::SetLayoutData(VertexContainer& container)
 	for (int i = 0; i < 4; i++)
 	{
 		container.SetVertex(i, 0, vertices + (i * 3));
+	}
+
+	// Set colours attribute in container
+	for (int i = 0; i < 4; i++)
+	{
+		container.SetVertex(i, 1, colours + (i * 3));
 	}
 }

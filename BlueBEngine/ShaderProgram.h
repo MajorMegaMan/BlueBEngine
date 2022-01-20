@@ -8,7 +8,7 @@ namespace BBB
 		GLuint m_shaderProgram;
 
 	public:
-		ShaderProgram();
+		ShaderProgram(const char* vertFileName, const char* fragFileName);
 		~ShaderProgram();
 
 		ShaderProgram(const ShaderProgram& other) = delete;
@@ -16,8 +16,16 @@ namespace BBB
 
 		void UseShaderProgram();
 
+		int GetUniformLocation(const char* uniformName);
+
+		// This will use this shader program and find the location before setting the uniform variable
+		void SetUniform4f(const char* uniformName, float* vec4);
+
+		// This only sets the target location uniform variable. It does not use any specific shader and will therefore apply to the last used shader
+		static void SetUniform4f(int location, float* vec4);
+
 	private:
-		void CreateShaderProgram();
+		void CreateShaderProgram(const char* vertFileName, const char* fragFileName);
 
 		void CreateShader(GLuint& shaderHandle, int shaderType, const char* fileSource);
 

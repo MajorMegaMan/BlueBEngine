@@ -10,12 +10,12 @@ namespace BBB
 		GLint size = 0;
 		GLenum type = 0;
 		GLboolean normalized = 0;
-		GLsizei stride = 0;
+		GLsizei typeSize = 0;
 
 	public:
-		void SetValues(GLint size, GLenum type, GLboolean normalized, GLsizei stride);
+		void SetValues(GLint size, GLenum type, GLboolean normalized, GLsizei typeSize);
 
-		void SetPointer(GLuint layoutIndex, int pointerOffset);
+		void SetPointer(GLuint layoutIndex, GLsizei stride, int pointerOffset);
 
 		static void EnableAttribArray(GLuint layoutIndex);
 	};

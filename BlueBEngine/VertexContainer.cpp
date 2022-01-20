@@ -19,7 +19,7 @@ namespace BBB
 	void VertexContainer::Init(const VertexLayout& layout, unsigned int verticeCount)
 	{
 		p_layout = &layout;
-		m_totalLayoutStride = p_layout->FindTotalStride();
+		m_totalLayoutStride = p_layout->GetStride();
 		m_verticeCount = verticeCount;
 		m_vertexArray = new char[m_totalLayoutStride * m_verticeCount];
 	}
@@ -29,7 +29,7 @@ namespace BBB
 		char* targetVertex = (char*)m_vertexArray + (m_totalLayoutStride * vertexIndex);
 		int strideToLayout = p_layout->FindStrideToLayout(layoutIndex);
 		char* targetLayout = targetVertex + strideToLayout;
-		int layoutStride = p_layout->GetLayoutStride(layoutIndex);
+		int layoutStride = p_layout->FindLayoutStride(layoutIndex);
 		for (int i = 0; i < layoutStride; i++)
 		{
 			targetLayout[i] = ((char*)data)[i];

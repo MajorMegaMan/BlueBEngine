@@ -11,6 +11,7 @@ namespace BBB
 	{
 		VertexAttibute* m_layoutArray = nullptr;
 		int m_size = 0;
+		GLsizei m_stride = 0;
 
 	public:
 		VertexLayout() {};
@@ -18,16 +19,16 @@ namespace BBB
 		VertexLayout& operator=(const VertexLayout& other) = delete;
 		~VertexLayout();
 
-		void Init(int size);
+		void Init(int size, GLsizei stride);
 		VertexAttibute* GetBegin();
 		VertexAttibute& GetAttribute(int index);
 
 		int GetLayoutSize(int index) const;
 		int FindTotalSize() const;
 
-		int GetLayoutStride(int index) const;
-		int FindStrideToLayout(int index) const;
-		int FindTotalStride() const;
+		int GetStride() const;
+		int FindStrideToLayout(int layoutIndex) const;
+		int FindLayoutStride(int layoutIndex) const;
 
 		void SetAttribPointers();
 		void Enable();

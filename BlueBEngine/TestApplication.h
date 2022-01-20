@@ -10,6 +10,9 @@ class TestApplication : public Application
 
 	VertexLayout m_vertexLayout;
 
+public:
+	TestApplication();
+
 	void Init() override;
 
 	void Close() override;
