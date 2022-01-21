@@ -12,6 +12,11 @@ class TestApplication : public Application
 
 	VertexLayout m_vertexLayout;
 
+	Transform m_testTransform;
+
+	float lastTime = 0.0f;
+	float deltaTime = 0.0f;
+
 public:
 	TestApplication();
 

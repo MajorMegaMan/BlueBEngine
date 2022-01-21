@@ -29,6 +29,7 @@ namespace BBB
 		Init();
 		while (!glfwWindowShouldClose(m_AppWindow.m_window))
 		{
+			Update();
 			Render();
 
 			glfwSwapBuffers(m_AppWindow.m_window);

@@ -1,6 +1,5 @@
 #include "TestApplication.h"
 #include "Debug.h"
-#include "Maths.h"
 
 #define TEST_VERT_FILE "basic.vert"
 #define TEST_FRAG_FILE "basic.frag"
@@ -20,7 +19,7 @@ void TestApplication::Init()
 	InitialiseLayouts();
 
 	// Create container to convert Layouts to be used in shader
-	VertexContainer container;	
+	VertexContainer container;
 	SetLayoutData(container);
 
 	// Send the container variables to the mesh
@@ -46,6 +45,8 @@ void TestApplication::Init()
 
 	m_shader.SetUniform1i("texture1", 0);
 	m_shader.SetUniform1i("texture2", 1);
+
+	m_testTransform.Translate({ 0.5f, 0.5f, 0.0f });
 }
 
 void TestApplication::Close()
@@ -62,12 +63,19 @@ void TestApplication::SetKeyInputs()
 
 void TestApplication::Update()
 {
+	float time = glfwGetTime();
+	deltaTime = time - lastTime;
+	lastTime = time;
 
+	m_testTransform.Rotate(deltaTime * 90, { 0.0f, 0.0f, 1.0f });
 }
 
 void TestApplication::Render()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
+
+	auto mat = m_testTransform.CalcMatrix();
+	m_shader.SetUniformMatrix4f("transform", (float*)&mat);
 
 	m_shader.UseShaderProgram();
 	m_testTexture.Bind(0);

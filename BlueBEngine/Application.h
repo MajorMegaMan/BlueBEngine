@@ -4,6 +4,7 @@
 #include "ShaderProgram.h"
 #include "VertexContainer.h"
 #include "Texture2D.h"
+#include "Transform.h"
 
 namespace BBB
 {

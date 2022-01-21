@@ -36,6 +36,12 @@ namespace BBB
 		SetUniform1i(GetUniformLocation(uniformName), value);
 	}
 
+	void ShaderProgram::SetUniformMatrix4f(const char* uniformName, float* mat4)
+	{
+		UseShaderProgram();
+		SetUniformMatrix4f(GetUniformLocation(uniformName), mat4);
+	}
+
 	void ShaderProgram::SetUniform4f(int location, float* vec4)
 	{
 		glUniform4f(location, vec4[0], vec4[1], vec4[2], vec4[3]);
@@ -44,6 +50,11 @@ namespace BBB
 	void ShaderProgram::SetUniform1i(int location, int value)
 	{
 		glUniform1i(location, value);
+	}
+
+	void ShaderProgram::SetUniformMatrix4f(int location, float* mat4)
+	{
+		glUniformMatrix4fv(location, 1, GL_FALSE, mat4);
 	}
 
 	void ShaderProgram::CreateShaderProgram(const char* vertFileName, const char* fragFileName)
