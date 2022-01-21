@@ -3,7 +3,7 @@
 
 namespace BBB
 {
-	class Texture
+	class Texture2D
 	{
 		int width;
 		int height;
@@ -18,6 +18,12 @@ namespace BBB
 
 		void Bind();
 
+		void Bind(int textureUnit);
+
 		void DeleteTexture();
+
+		static void SetActiveTexture(int textureUnit);
+
+		static void SetImageFlipVertical(bool value);
 	};
 }

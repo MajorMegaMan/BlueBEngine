@@ -87,7 +87,7 @@
     <ClCompile Include="ShaderProgram.cpp">
       <Filter>Source Files\Shader</Filter>
     </ClCompile>
-    <ClCompile Include="Texture.cpp">
+    <ClCompile Include="Texture2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -146,7 +146,7 @@
     <ClInclude Include="Maths.h">
       <Filter>Source Files\Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="Texture.h">
+    <ClInclude Include="Texture2D.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -30,9 +30,20 @@ namespace BBB
 		SetUniform4f(GetUniformLocation(uniformName), vec4);
 	}
 
+	void ShaderProgram::SetUniform1i(const char* uniformName, int value)
+	{
+		UseShaderProgram();
+		SetUniform1i(GetUniformLocation(uniformName), value);
+	}
+
 	void ShaderProgram::SetUniform4f(int location, float* vec4)
 	{
 		glUniform4f(location, vec4[0], vec4[1], vec4[2], vec4[3]);
+	}
+
+	void ShaderProgram::SetUniform1i(int location, int value)
+	{
+		glUniform1i(location, value);
 	}
 
 	void ShaderProgram::CreateShaderProgram(const char* vertFileName, const char* fragFileName)

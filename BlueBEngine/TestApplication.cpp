@@ -42,12 +42,17 @@ void TestApplication::Init()
 	m_vertexLayout.Enable();
 
 	m_testTexture.LoadImage("container.jpg");
+	m_smileTexture.LoadImage("awesomeface.png");
+
+	m_shader.SetUniform1i("texture1", 0);
+	m_shader.SetUniform1i("texture2", 1);
 }
 
 void TestApplication::Close()
 {
 	m_testMesh.Delete();
 	m_testTexture.DeleteTexture();
+	m_smileTexture.DeleteTexture();
 }
 
 void TestApplication::SetKeyInputs()
@@ -65,7 +70,8 @@ void TestApplication::Render()
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	m_shader.UseShaderProgram();
-	m_testTexture.Bind();
+	m_testTexture.Bind(0);
+	m_smileTexture.Bind(1);
 	m_testMesh.IDraw(6, GL_UNSIGNED_INT);
 }
 

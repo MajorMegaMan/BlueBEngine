@@ -20,9 +20,11 @@ namespace BBB
 
 		// This will use this shader program and find the location before setting the uniform variable
 		void SetUniform4f(const char* uniformName, float* vec4);
+		void SetUniform1i(const char* uniformName, int value);
 
 		// This only sets the target location uniform variable. It does not use any specific shader and will therefore apply to the last used shader
 		static void SetUniform4f(int location, float* vec4);
+		static void SetUniform1i(int location, int value);
 
 	private:
 		void CreateShaderProgram(const char* vertFileName, const char* fragFileName);

@@ -3,7 +3,7 @@
 #include "IndexedMesh.h"
 #include "ShaderProgram.h"
 #include "VertexContainer.h"
-#include "Texture.h"
+#include "Texture2D.h"
 
 namespace BBB
 {

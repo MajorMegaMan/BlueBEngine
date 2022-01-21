@@ -15,6 +15,8 @@ namespace BBB
 
 		// Set Clear colour
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+
+		Texture2D::SetImageFlipVertical(true);
 	}
 
 	Application::~Application()
