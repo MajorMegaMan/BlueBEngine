@@ -13,6 +13,13 @@ namespace BBB
 			{
 				// This is intentionally empty
 			}
+
+			void default_scroll_action(GLFWwindow* window, double x, double y)
+			{
+				// This is intentionally empty
+			}
+
+			GLFWscrollfun _scrollAction = default_scroll_action;
 		}
 
 		void init_key_actions()
@@ -34,6 +41,16 @@ namespace BBB
 			// ensure the index matches the correct action
 			int index = (key + _keyActionsSize) % _keyActionsSize;
 			_keyActions[index](window, scancode, action, mods);
+		}
+
+		void set_scroll_action(GLFWscrollfun action)
+		{
+			_scrollAction = action;
+		}
+
+		void invoke_scroll_action(GLFWwindow* window, double x, double y)
+		{
+			_scrollAction(window, x, y);
 		}
 	}
 }

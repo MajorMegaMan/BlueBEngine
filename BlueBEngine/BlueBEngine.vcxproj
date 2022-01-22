@@ -148,6 +148,7 @@
     <ClCompile Include="..\Includes\glad.c" />
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="AppWindow.cpp" />
+    <ClCompile Include="Camera2D.cpp" />
     <ClCompile Include="ElementBufferObject.cpp" />
     <ClCompile Include="File.cpp" />
     <ClCompile Include="IndexedMesh.cpp" />
@@ -168,6 +169,8 @@
   <ItemGroup>
     <ClInclude Include="Application.h" />
     <ClInclude Include="AppWindow.h" />
+    <ClInclude Include="Camera2D.h" />
+    <ClInclude Include="Conversion.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="ElementBufferObject.h" />
     <ClInclude Include="File.h" />

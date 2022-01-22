@@ -13,6 +13,7 @@ class TestApplication : public Application
 	VertexLayout m_vertexLayout;
 
 	Transform m_testTransform;
+	Camera2D m_camera;
 
 	float lastTime = 0.0f;
 	float deltaTime = 0.0f;
@@ -37,3 +38,9 @@ public:
 
 	void SetLayoutData(VertexContainer& container);
 };
+
+void SetCallbackCamera(Camera2D& cam);
+
+void WindowResize(int width, int height);
+
+void ScrollCallback(GLFWwindow* window, double x, double y);

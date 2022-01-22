@@ -137,9 +137,10 @@ namespace BBB
 		typedef void (*KeyAction)(GLFWwindow* window, int scancode, int action, int mods);
 
 		void init_key_actions();
-
 		void set_key_action(int key, KeyAction action);
-
 		void invoke_key_action(GLFWwindow* window, int key, int scancode, int action, int mods);
+
+		void set_scroll_action(GLFWscrollfun action);
+		void invoke_scroll_action(GLFWwindow* window, double x, double y);
 	}
 }

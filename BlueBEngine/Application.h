@@ -5,12 +5,13 @@
 #include "VertexContainer.h"
 #include "Texture2D.h"
 #include "Transform.h"
+#include "Camera2D.h"
 
 namespace BBB
 {
 	class Application
 	{
-		AppWindow m_AppWindow;
+		AppWindow m_appWindow;
 
 	public:
 
@@ -25,16 +26,21 @@ namespace BBB
 
 		virtual void Close();
 
+		virtual void Update();
+		virtual void Render();
+
 		// this can be overridden for user inputs
 		virtual void SetKeyInputs();
 
-		virtual void Update();
-
-		virtual void Render();
+		// Window access
+		bool TestKey(int key);
+		void SetWindowResizeCallback(AppWindow::ResizeCallback callback);
 	};
 
 	namespace AppCallbacks
 	{
 		void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
+
+		void scroll_callback(GLFWwindow* window, double x, double y);
 	}
 }

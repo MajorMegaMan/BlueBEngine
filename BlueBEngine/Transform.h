@@ -12,6 +12,9 @@ namespace BBB
 	public:
 		Transform();
 
+		glm::vec3 GetPosition() const;
+		void SetPosition(glm::vec3 position);
+
 		void Translate(glm::vec3 translation);
 
 		// angle is in degrees
@@ -20,5 +23,12 @@ namespace BBB
 		void Scale(glm::vec3 scale);
 
 		glm::mat4x4 CalcMatrix();
+
+	protected:
+		glm::vec3* GetPositionPtr();
+
+		// used for type conversion getters
+		// example use is in the camera2D class
+		const glm::vec3* GetConstPositionPtr() const;
 	};
 }
