@@ -10,6 +10,7 @@ namespace BBB
 		GLVertex::VertexArrayObject VAO;
 		GLVertex::VertexBufferObject VBO;
 
+		GLenum usage = GL_STATIC_DRAW;
 
 	public:
 		virtual void Generate();
@@ -22,7 +23,7 @@ namespace BBB
 
 		void SetVertices(float* verticesArray, int size);
 
-		void VertexAttributePointer(GLuint layoutIndex, GLint size, GLenum type, GLboolean normalized, GLsizei stride, int pointer);
+		void SetUsage(GLenum usage);
 
 		void Bind();
 

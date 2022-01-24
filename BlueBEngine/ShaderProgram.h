@@ -7,12 +7,18 @@ namespace BBB
 	{
 		GLuint m_shaderProgram;
 
+		bool m_isLoaded = false;
+
 	public:
+		ShaderProgram() {};
 		ShaderProgram(const char* vertFileName, const char* fragFileName);
 		~ShaderProgram();
 
 		ShaderProgram(const ShaderProgram& other) = delete;
 		ShaderProgram& operator= (const ShaderProgram& other) = delete;
+
+		void LoadShaderProgram(const char* vertFileName, const char* fragFileName);
+		void CreateShaderProgram(const char* vertShaderSource, const char* fragShaderSource);
 
 		void UseShaderProgram();
 
@@ -29,9 +35,9 @@ namespace BBB
 		static void SetUniformMatrix4f(int location, float* mat4);
 
 	private:
-		void CreateShaderProgram(const char* vertFileName, const char* fragFileName);
+		void LoadShader(GLuint& shaderHandle, int shaderType, const char* fileSource);
 
-		void CreateShader(GLuint& shaderHandle, int shaderType, const char* fileSource);
+		void CreateShader(GLuint& shaderHandle, int shaderType, const char* shaderSource);
 
 		int CheckShaderCompileStatus(GLuint shader);
 

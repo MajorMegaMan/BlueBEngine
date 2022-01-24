@@ -6,12 +6,13 @@
 #define TEST_FRAG_FILE "basic.frag"
 #define TEST_UNIFORM_FRAG "uniformTest.frag"
 
-#define CAM_MOVE_SPEED 5.0f
+#define CAM_HEIGHT 10.0f
+#define CAM_MOVE_SPEED 1.0f
 #define CAM_ZOOM_MAG 2.0f
 
-TestApplication::TestApplication() : m_shader(TEST_VERT_FILE, TEST_FRAG_FILE)
+TestApplication::TestApplication()
 {
-	
+	m_shader.LoadShaderProgram(TEST_VERT_FILE, TEST_FRAG_FILE);
 }
 
 void TestApplication::Init()
@@ -57,7 +58,19 @@ void TestApplication::Init()
 	//m_testTransform.Translate({ 0.5f, 0.5f, 0.0f });
 	//m_testTransform.Rotate(90, { 1.0f, 0.0f, 0.0f });
 
-	m_camera.SetCamHeight(10.0f);
+	m_camera.SetCamHeight(CAM_HEIGHT);
+
+	lines.SetColour({ 1.0f, 0.0f, 0.0f, 1.0f });
+	lines.AddLine({ 0.0f, 0.0f }, { 1.0f, 1.0f });
+	lines.AddLine({ 0.0f, 2.0f }, { 1.0f, 3.0f });
+
+	glm::vec2 vertices[] = {
+	{ 1.5f,  1.5f},  // top right
+	{ 1.5f, -1.5f},  // bottom right
+	{-1.5f, -1.5f},  // bottom left
+	{-1.5f,  1.5f}   // top left 
+	};
+	lines.AddShape(vertices, 4);
 }
 
 void TestApplication::Close()
@@ -72,15 +85,22 @@ void TestApplication::SetKeyInputs()
 	Application::SetKeyInputs();
 }
 
+bool spaceDown = false;
+
 void TestApplication::Update()
 {
 	float time = glfwGetTime();
 	deltaTime = time - lastTime;
 	lastTime = time;
 
+	double mouseX, mouseY;
+	GetCursorPos(mouseX, mouseY);
+	mousePos.x = mouseX;
+	mousePos.y = mouseY;
+
 	float camSpeed = deltaTime * CAM_MOVE_SPEED * m_camera.GetCamHeight();
 
-	m_testTransform.Rotate(deltaTime * 90, { 0.0f, 0.0f, 1.0f });
+	//m_testTransform.Rotate(deltaTime * 90, { 0.0f, 0.0f, 1.0f });
 
 	if (TestKey(GLFW_KEY_W))
 	{
@@ -98,25 +118,32 @@ void TestApplication::Update()
 	{
 		m_camera.Translate({ -camSpeed, 0.0f, 0.0f });
 	}
+	if (TestKey(GLFW_KEY_SPACE))
+	{
+		if (!spaceDown)
+		{
+			spaceDown = true;
+			glm::vec4 colour = lines.GetColour();
+			colour.x = 1.0f - colour.x;
+			colour.y = 1.0f - colour.y;
+			colour.z = 1.0f - colour.z;
+			lines.SetColour(colour);
+		}
+	}
+	else
+	{
+		spaceDown = false;
+	}
 }
 
 void TestApplication::Render()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	glm::mat4 view = glm::mat4(1.0f);
-	// note that we're translating the scene in the reverse direction of where we want to move
-	view = glm::translate(view, -glm::vec3(0.0f, 0.0f, 0.0f));
-
-	glm::mat4 projection;
-	//projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
-	//projection = glm::ortho(-800.0f / 2.0f, 800.0f / 2.0f, -600 / 2.0f, 600 / 2.0f, -1.0f, 1.0f);
-
-	projection = m_camera.FindOrthoMatrix();
+	auto camMat = m_camera.FindOrthoMatrix();
 
 	auto mat = m_testTransform.CalcMatrix();
-
-	mat = projection * view * mat;
+	mat = camMat * mat;
 
 	m_shader.SetUniformMatrix4f("transform", (float*)&mat);
 
@@ -124,6 +151,15 @@ void TestApplication::Render()
 	m_testTexture.Bind(0);
 	m_smileTexture.Bind(1);
 	m_testMesh.IDraw(6, GL_UNSIGNED_INT);
+
+	glm::vec4 mousething(mousePos.x, mousePos.y, 0.0f, 1.0f);
+	mousething = glm::inverse(camMat) * mousething;
+
+	followMouse.Clear();
+	followMouse.AddLine({ 0.0f,0.0f }, { mousething.x, mousething.y });
+
+	lines.Draw(camMat);
+	followMouse.Draw(camMat);
 }
 
 void TestApplication::GenerateMesh()

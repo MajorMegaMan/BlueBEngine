@@ -79,6 +79,13 @@ namespace BBB
         return glfwGetKey(m_window, key) == GLFW_PRESS;
     }
 
+    void AppWindow::GetCursorPos(double& x, double& y)
+    {
+        glfwGetCursorPos(m_window, &x, &y);
+        x = (x / m_width) * 2.0 - 1.0;
+        y = -((y / m_height) * 2.0 - 1.0);
+    }
+
     namespace WindowCallbacks
     {
         void framebuffer_size_callback(GLFWwindow* window, int width, int height)

@@ -35,6 +35,7 @@ namespace BBB
 		// Window access
 		bool TestKey(int key);
 		void SetWindowResizeCallback(AppWindow::ResizeCallback callback);
+		void GetCursorPos(double& x, double& y);
 	};
 
 	namespace AppCallbacks

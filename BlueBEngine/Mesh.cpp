@@ -28,13 +28,12 @@ namespace BBB
 	{
 		VAO.Bind();
 		VBO.Bind();
-		VBO.SetData(size * sizeof(float), verticesArray, GL_STATIC_DRAW);
+		VBO.SetData(size * sizeof(float), verticesArray, usage);
 	}
 
-	void Mesh::VertexAttributePointer(GLuint layoutIndex, GLint size, GLenum type, GLboolean normalized, GLsizei stride, int pointer)
+	void Mesh::SetUsage(GLenum usage)
 	{
-		glVertexAttribPointer(layoutIndex, size, type, normalized, stride, (void*)pointer);
-		glEnableVertexAttribArray(layoutIndex);
+		this->usage = usage;
 	}
 
 	void Mesh::Bind()

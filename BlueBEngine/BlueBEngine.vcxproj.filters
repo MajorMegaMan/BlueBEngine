@@ -13,26 +13,29 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\Debug">
-      <UniqueIdentifier>{a99e8daf-f2e7-4acf-a94f-b076e3f7f9d7}</UniqueIdentifier>
+    <Filter Include="Source Files\Engine">
+      <UniqueIdentifier>{b0eacc6f-d73c-43f7-ab0c-92d74756b9a9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Application">
-      <UniqueIdentifier>{feb94df1-124d-4f15-a131-8987a96e7b00}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Utilities">
-      <UniqueIdentifier>{af501ef5-cfb9-4c9f-964b-53899aba1e1b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Shader">
+    <Filter Include="Source Files\Engine\Shader">
       <UniqueIdentifier>{79bd1227-bede-4821-86c5-ba7b69df81a2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Mesh">
+    <Filter Include="Source Files\Engine\Utilities">
+      <UniqueIdentifier>{af501ef5-cfb9-4c9f-964b-53899aba1e1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Mesh">
       <UniqueIdentifier>{54645e56-04cf-467e-9aa0-f39d9a5b76c1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Mesh\Layouts">
+    <Filter Include="Source Files\Engine\Mesh\Layouts">
       <UniqueIdentifier>{f6fc62ae-a0b9-4f57-8925-c7552ab1fe8e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Mesh\VertexObjects">
+    <Filter Include="Source Files\Engine\Mesh\VertexObjects">
       <UniqueIdentifier>{b38b2f40-466c-436c-9e4c-712099724737}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Debug">
+      <UniqueIdentifier>{a99e8daf-f2e7-4acf-a94f-b076e3f7f9d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Application">
+      <UniqueIdentifier>{feb94df1-124d-4f15-a131-8987a96e7b00}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -43,126 +46,132 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Debug.cpp">
-      <Filter>Source Files\Debug</Filter>
+      <Filter>Source Files\Engine\Debug</Filter>
     </ClCompile>
     <ClCompile Include="AppWindow.cpp">
-      <Filter>Source Files\Application</Filter>
+      <Filter>Source Files\Engine\Application</Filter>
     </ClCompile>
     <ClCompile Include="Application.cpp">
-      <Filter>Source Files\Application</Filter>
+      <Filter>Source Files\Engine\Application</Filter>
     </ClCompile>
     <ClCompile Include="Input.cpp">
-      <Filter>Source Files\Application</Filter>
+      <Filter>Source Files\Engine\Application</Filter>
     </ClCompile>
     <ClCompile Include="TestApplication.cpp">
-      <Filter>Source Files\Debug</Filter>
+      <Filter>Source Files\Engine\Debug</Filter>
     </ClCompile>
     <ClCompile Include="File.cpp">
-      <Filter>Source Files\Utilities</Filter>
+      <Filter>Source Files\Engine\Utilities</Filter>
     </ClCompile>
     <ClCompile Include="Mesh.cpp">
-      <Filter>Source Files\Mesh</Filter>
+      <Filter>Source Files\Engine\Mesh</Filter>
     </ClCompile>
     <ClCompile Include="IndexedMesh.cpp">
-      <Filter>Source Files\Mesh</Filter>
+      <Filter>Source Files\Engine\Mesh</Filter>
     </ClCompile>
     <ClCompile Include="VertexAttribute.cpp">
-      <Filter>Source Files\Mesh\Layouts</Filter>
+      <Filter>Source Files\Engine\Mesh\Layouts</Filter>
     </ClCompile>
     <ClCompile Include="VertexContainer.cpp">
-      <Filter>Source Files\Mesh\Layouts</Filter>
+      <Filter>Source Files\Engine\Mesh\Layouts</Filter>
     </ClCompile>
     <ClCompile Include="VertexLayout.cpp">
-      <Filter>Source Files\Mesh\Layouts</Filter>
+      <Filter>Source Files\Engine\Mesh\Layouts</Filter>
     </ClCompile>
     <ClCompile Include="ElementBufferObject.cpp">
-      <Filter>Source Files\Mesh\VertexObjects</Filter>
+      <Filter>Source Files\Engine\Mesh\VertexObjects</Filter>
     </ClCompile>
     <ClCompile Include="VertexArrayObject.cpp">
-      <Filter>Source Files\Mesh\VertexObjects</Filter>
+      <Filter>Source Files\Engine\Mesh\VertexObjects</Filter>
     </ClCompile>
     <ClCompile Include="VertexBufferObject.cpp">
-      <Filter>Source Files\Mesh\VertexObjects</Filter>
+      <Filter>Source Files\Engine\Mesh\VertexObjects</Filter>
     </ClCompile>
     <ClCompile Include="ShaderProgram.cpp">
-      <Filter>Source Files\Shader</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture2D.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Transform.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Engine\Shader</Filter>
     </ClCompile>
     <ClCompile Include="Camera2D.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture2D.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="LineRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Debug.h">
-      <Filter>Source Files\Debug</Filter>
+      <Filter>Source Files\Engine\Debug</Filter>
     </ClInclude>
     <ClInclude Include="AppWindow.h">
-      <Filter>Source Files\Application</Filter>
+      <Filter>Source Files\Engine\Application</Filter>
     </ClInclude>
     <ClInclude Include="Graphics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Application.h">
-      <Filter>Source Files\Application</Filter>
+      <Filter>Source Files\Engine\Application</Filter>
     </ClInclude>
     <ClInclude Include="Input.h">
-      <Filter>Source Files\Application</Filter>
+      <Filter>Source Files\Engine\Application</Filter>
     </ClInclude>
     <ClInclude Include="KeyCallbacks.h">
-      <Filter>Source Files\Application</Filter>
+      <Filter>Source Files\Engine\Application</Filter>
     </ClInclude>
     <ClInclude Include="TestApplication.h">
-      <Filter>Source Files\Debug</Filter>
+      <Filter>Source Files\Engine\Debug</Filter>
     </ClInclude>
     <ClInclude Include="File.h">
-      <Filter>Source Files\Utilities</Filter>
+      <Filter>Source Files\Engine\Utilities</Filter>
     </ClInclude>
     <ClInclude Include="ShaderProgram.h">
-      <Filter>Source Files\Shader</Filter>
+      <Filter>Source Files\Engine\Shader</Filter>
     </ClInclude>
     <ClInclude Include="Mesh.h">
-      <Filter>Source Files\Mesh</Filter>
+      <Filter>Source Files\Engine\Mesh</Filter>
     </ClInclude>
     <ClInclude Include="IndexedMesh.h">
-      <Filter>Source Files\Mesh</Filter>
+      <Filter>Source Files\Engine\Mesh</Filter>
     </ClInclude>
     <ClInclude Include="VertexAttribute.h">
-      <Filter>Source Files\Mesh\Layouts</Filter>
+      <Filter>Source Files\Engine\Mesh\Layouts</Filter>
     </ClInclude>
     <ClInclude Include="VertexContainer.h">
-      <Filter>Source Files\Mesh\Layouts</Filter>
+      <Filter>Source Files\Engine\Mesh\Layouts</Filter>
     </ClInclude>
     <ClInclude Include="VertexLayout.h">
-      <Filter>Source Files\Mesh\Layouts</Filter>
+      <Filter>Source Files\Engine\Mesh\Layouts</Filter>
     </ClInclude>
     <ClInclude Include="ElementBufferObject.h">
-      <Filter>Source Files\Mesh\VertexObjects</Filter>
+      <Filter>Source Files\Engine\Mesh\VertexObjects</Filter>
     </ClInclude>
     <ClInclude Include="VertexArrayObject.h">
-      <Filter>Source Files\Mesh\VertexObjects</Filter>
+      <Filter>Source Files\Engine\Mesh\VertexObjects</Filter>
     </ClInclude>
     <ClInclude Include="VertexBufferObject.h">
-      <Filter>Source Files\Mesh\VertexObjects</Filter>
+      <Filter>Source Files\Engine\Mesh\VertexObjects</Filter>
     </ClInclude>
     <ClInclude Include="Maths.h">
-      <Filter>Source Files\Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture2D.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Transform.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera2D.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Engine\Utilities</Filter>
     </ClInclude>
     <ClInclude Include="Conversion.h">
-      <Filter>Source Files\Utilities</Filter>
+      <Filter>Source Files\Engine\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera2D.h">
+      <Filter>Source Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture2D.h">
+      <Filter>Source Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Source Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="LineRenderer.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

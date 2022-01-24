@@ -36,6 +36,8 @@ namespace BBB
 
 		bool TestKey(int key);
 
+		void GetCursorPos(double& x, double& y);
+
 		friend Application;
 	};
 }

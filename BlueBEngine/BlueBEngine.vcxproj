@@ -155,6 +155,7 @@
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Debug.cpp" />
+    <ClCompile Include="LineRenderer.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
     <ClCompile Include="TestApplication.cpp" />
     <ClCompile Include="Mesh.cpp" />
@@ -179,6 +180,7 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="KeyCallbacks.h" />
     <ClInclude Include="Maths.h" />
+    <ClInclude Include="LineRenderer.h" />
     <ClInclude Include="ShaderProgram.h" />
     <ClInclude Include="TestApplication.h" />
     <ClInclude Include="Mesh.h" />

@@ -6,12 +6,15 @@ namespace BBB
 {
 	ShaderProgram::ShaderProgram(const char* vertFileName, const char* fragFileName)
 	{
-		CreateShaderProgram(vertFileName, fragFileName);
+		LoadShaderProgram(vertFileName, fragFileName);
 	}
 
 	ShaderProgram::~ShaderProgram()
 	{
-		glDeleteProgram(m_shaderProgram);
+		if (m_isLoaded)
+		{
+			glDeleteProgram(m_shaderProgram);
+		}
 	}
 
 	void ShaderProgram::UseShaderProgram()
@@ -57,15 +60,15 @@ namespace BBB
 		glUniformMatrix4fv(location, 1, GL_FALSE, mat4);
 	}
 
-	void ShaderProgram::CreateShaderProgram(const char* vertFileName, const char* fragFileName)
+	void ShaderProgram::LoadShaderProgram(const char* vertFileName, const char* fragFileName)
 	{
 		GLuint vertexShader;
 		GLuint fragmentShader;
 
-		CreateShader(vertexShader, GL_VERTEX_SHADER, vertFileName);
+		LoadShader(vertexShader, GL_VERTEX_SHADER, vertFileName);
 		LogShader(vertexShader, "Vertex Shader", vertFileName);
 
-		CreateShader(fragmentShader, GL_FRAGMENT_SHADER, fragFileName);
+		LoadShader(fragmentShader, GL_FRAGMENT_SHADER, fragFileName);
 		LogShader(fragmentShader, "Fragment Shader", fragFileName);
 
 		m_shaderProgram = glCreateProgram();
@@ -76,15 +79,45 @@ namespace BBB
 
 		glDeleteShader(vertexShader);
 		glDeleteShader(fragmentShader);
+
+		m_isLoaded = true;
 	}
 
-	void ShaderProgram::CreateShader(GLuint& shaderHandle, int shaderType, const char* fileSource)
+	void ShaderProgram::CreateShaderProgram(const char* vertShaderSource, const char* fragShaderSource)
 	{
-		shaderHandle = glCreateShader(shaderType);
+		GLuint vertexShader;
+		GLuint fragmentShader;
+
+		CreateShader(vertexShader, GL_VERTEX_SHADER, vertShaderSource);
+		LogShader(vertexShader, "Vertex Shader", "vertex source");
+
+		CreateShader(fragmentShader, GL_FRAGMENT_SHADER, fragShaderSource);
+		LogShader(fragmentShader, "Fragment Shader", "fragment source");
+
+		m_shaderProgram = glCreateProgram();
+		glAttachShader(m_shaderProgram, vertexShader);
+		glAttachShader(m_shaderProgram, fragmentShader);
+		glLinkProgram(m_shaderProgram);
+		LogProgram(m_shaderProgram, "vertex source", "fragment source");
+
+		glDeleteShader(vertexShader);
+		glDeleteShader(fragmentShader);
+
+		m_isLoaded = true;
+	}
+
+	void ShaderProgram::LoadShader(GLuint& shaderHandle, int shaderType, const char* fileSource)
+	{
 		std::string source = LoadFileAsString(fileSource);
 		const char* sourceC = source.c_str();
 
-		glShaderSource(shaderHandle, 1, &sourceC, nullptr);
+		CreateShader(shaderHandle, shaderType, sourceC);
+	}
+
+	void ShaderProgram::CreateShader(GLuint& shaderHandle, int shaderType, const char* shaderSource)
+	{
+		shaderHandle = glCreateShader(shaderType);
+		glShaderSource(shaderHandle, 1, &shaderSource, nullptr);
 		glCompileShader(shaderHandle);
 	}
 
@@ -116,6 +149,7 @@ namespace BBB
 			Debug_PrintLine("\" compiled successfully.");
 		}
 	}
+
 	int ShaderProgram::CheckProgramCompileStatus(GLuint shaderProgram)
 	{
 		GLint success = 0;

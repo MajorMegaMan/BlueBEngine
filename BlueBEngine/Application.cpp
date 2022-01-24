@@ -22,7 +22,7 @@ namespace BBB
 
 	Application::~Application()
 	{
-		glfwTerminate();
+		
 	}
 
 	void Application::Run()
@@ -37,7 +37,6 @@ namespace BBB
 			glfwPollEvents();
 		}
 		Close();
-		glfwTerminate();
 	}
 
 	void Application::Init()
@@ -75,6 +74,11 @@ namespace BBB
 	void Application::SetWindowResizeCallback(AppWindow::ResizeCallback callback)
 	{
 		m_appWindow.SetResizeCallback(callback);
+	}
+
+	void Application::GetCursorPos(double& x, double& y)
+	{
+		m_appWindow.GetCursorPos(x, y);
 	}
 
 	namespace AppCallbacks

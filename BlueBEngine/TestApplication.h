@@ -1,19 +1,25 @@
 #pragma once
 #include "Application.h"
+#include "LineRenderer.h"
 
 using namespace BBB;
 
 class TestApplication : public Application
 {
+	Transform m_testTransform;
+	// a model needs
 	ShaderProgram m_shader;
+	VertexLayout m_vertexLayout;
 	IndexedMesh m_testMesh;
 	Texture2D m_testTexture;
 	Texture2D m_smileTexture;
 
-	VertexLayout m_vertexLayout;
-
-	Transform m_testTransform;
 	Camera2D m_camera;
+
+	LineRenderer lines;
+	LineRenderer followMouse;
+
+	glm::vec2 mousePos;
 
 	float lastTime = 0.0f;
 	float deltaTime = 0.0f;
