@@ -11,8 +11,13 @@ namespace BBB
 		// Initialise input
 		Input::init_key_actions();
 		SetKeyInputs();
+		
+		// Set user pointer to this app
+		glfwSetWindowUserPointer(m_appWindow.m_window, (void*)this);
+
 		glfwSetKeyCallback(m_appWindow.m_window, AppCallbacks::key_callback);
 		glfwSetScrollCallback(m_appWindow.m_window, AppCallbacks::scroll_callback);
+		glfwSetMouseButtonCallback(m_appWindow.m_window, AppCallbacks::mouse_callback);
 
 		// Set Clear colour
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
@@ -66,6 +71,16 @@ namespace BBB
 		Input::set_key_action(Input::ESCAPE, escape_key_action);
 	}
 
+	void Application::OnMouseClick(int button)
+	{
+
+	}
+
+	void Application::OnMouseRelease(int button)
+	{
+
+	}
+
 	bool Application::TestKey(int key)
 	{
 		return m_appWindow.TestKey(key);
@@ -91,6 +106,24 @@ namespace BBB
 		void scroll_callback(GLFWwindow* window, double x, double y)
 		{
 			Input::invoke_scroll_action(window, x, y);
+		}
+
+		void mouse_callback(GLFWwindow* window, int button, int action, int mods)
+		{
+			Application* app = (Application*)glfwGetWindowUserPointer(window);
+			switch (action)
+			{
+			case GLFW_PRESS:
+			{
+				app->OnMouseClick(button);
+				break;
+			}
+			case GLFW_RELEASE:
+			{
+				app->OnMouseRelease(button);
+				break;
+			}
+			}
 		}
 	}
 }

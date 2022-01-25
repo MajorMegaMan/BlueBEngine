@@ -32,6 +32,11 @@ namespace BBB
 		// this can be overridden for user inputs
 		virtual void SetKeyInputs();
 
+	public:
+		virtual void OnMouseClick(int button);
+		virtual void OnMouseRelease(int button);
+
+	protected:
 		// Window access
 		bool TestKey(int key);
 		void SetWindowResizeCallback(AppWindow::ResizeCallback callback);
@@ -43,5 +48,7 @@ namespace BBB
 		void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 
 		void scroll_callback(GLFWwindow* window, double x, double y);
+
+		void mouse_callback(GLFWwindow* window, int button, int action, int mods);
 	}
 }

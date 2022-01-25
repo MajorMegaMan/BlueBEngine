@@ -19,6 +19,9 @@ class TestApplication : public Application
 	LineRenderer lines;
 	LineRenderer followMouse;
 
+	bool isAdding = false;
+	glm::vec2 lastAdded = { 0.0f, 0.0f };
+
 	glm::vec2 mousePos;
 
 	float lastTime = 0.0f;
@@ -37,7 +40,13 @@ public:
 
 	void Render() override;
 
+	// Inputs
+	void OnMouseClick(int button) override;
+	void OnMouseRelease(int button) override;
+
 	// Debugging shit
+	void DrawCircle(glm::vec2 centre, float size, int segmentCount);
+
 	void GenerateMesh();
 
 	void InitialiseLayouts();

@@ -61,16 +61,6 @@ void TestApplication::Init()
 	m_camera.SetCamHeight(CAM_HEIGHT);
 
 	lines.SetColour({ 1.0f, 0.0f, 0.0f, 1.0f });
-	lines.AddLine({ 0.0f, 0.0f }, { 1.0f, 1.0f });
-	lines.AddLine({ 0.0f, 2.0f }, { 1.0f, 3.0f });
-
-	glm::vec2 vertices[] = {
-	{ 1.5f,  1.5f},  // top right
-	{ 1.5f, -1.5f},  // bottom right
-	{-1.5f, -1.5f},  // bottom left
-	{-1.5f,  1.5f}   // top left 
-	};
-	lines.AddShape(vertices, 4);
 }
 
 void TestApplication::Close()
@@ -97,6 +87,12 @@ void TestApplication::Update()
 	GetCursorPos(mouseX, mouseY);
 	mousePos.x = mouseX;
 	mousePos.y = mouseY;
+
+	auto camMat = m_camera.FindOrthoMatrix();
+	glm::vec4 mousething(mousePos.x, mousePos.y, 0.0f, 1.0f);
+	mousething = glm::inverse(camMat) * mousething;
+
+	mousePos = { mousething.x, mousething.y };
 
 	float camSpeed = deltaTime * CAM_MOVE_SPEED * m_camera.GetCamHeight();
 
@@ -152,14 +148,60 @@ void TestApplication::Render()
 	m_smileTexture.Bind(1);
 	m_testMesh.IDraw(6, GL_UNSIGNED_INT);
 
-	glm::vec4 mousething(mousePos.x, mousePos.y, 0.0f, 1.0f);
-	mousething = glm::inverse(camMat) * mousething;
-
-	followMouse.Clear();
-	followMouse.AddLine({ 0.0f,0.0f }, { mousething.x, mousething.y });
+	if (isAdding)
+	{
+		followMouse.Clear();
+		followMouse.AddLine(lastAdded, mousePos);
+	}
 
 	lines.Draw(camMat);
 	followMouse.Draw(camMat);
+}
+
+void TestApplication::OnMouseClick(int button)
+{
+	if (button == 0)
+	{
+		if (isAdding)
+		{
+			lines.AddLine(lastAdded, mousePos);
+			lastAdded = mousePos;
+		}
+		else
+		{
+			DrawCircle(mousePos, 0.05f, 32);
+		}
+	}
+
+	if (button == 1)
+	{
+		isAdding = !isAdding;
+		lastAdded = mousePos;
+		followMouse.Clear();
+	}
+}
+
+void TestApplication::OnMouseRelease(int button)
+{
+
+}
+
+void TestApplication::DrawCircle(glm::vec2 centre, float size, int segmentCount)
+{
+	float cosAngle = cos(2 * 3.14159f / segmentCount);
+	float sinAngle = sin(2 * 3.14159f / segmentCount);
+
+	glm::mat2 rotMat = { {cosAngle, -sinAngle},{sinAngle, cosAngle} };
+
+	glm::vec2 plotPoint(0, size);
+
+	for (int i = 0; i <= segmentCount; i++)
+	{
+		auto start = centre + plotPoint;
+		plotPoint = rotMat * plotPoint;
+		auto end = centre + plotPoint;
+		lines.AddLine(start, end);
+	}
 }
 
 void TestApplication::GenerateMesh()
