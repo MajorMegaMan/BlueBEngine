@@ -23,7 +23,9 @@ namespace BBB
 		void LoadShader(string vertexFileName, string fragmentFileName);
 		GLHandles::ShaderProgram& GetShader();
 
-		void SetLayout(VertexAttibute* attributes, int size);
+		void DeleteShader();
+
+		void SetLayout(VertexAttribute* attributes, int size);
 		VertexLayout& GetLayout();
 
 		void EnableLayout();

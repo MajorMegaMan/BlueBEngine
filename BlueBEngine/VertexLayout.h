@@ -9,7 +9,7 @@ namespace BBB
 {
 	class VertexLayout
 	{
-		VertexAttibute* m_layoutArray = nullptr;
+		VertexAttribute* m_layoutArray = nullptr;
 		int m_size = 0;
 		GLsizei m_stride = 0;
 
@@ -20,9 +20,9 @@ namespace BBB
 		~VertexLayout();
 
 		void Init(int size);
-		void Init(VertexAttibute* attributes, int size);
-		VertexAttibute* GetBegin();
-		VertexAttibute& GetAttribute(int index);
+		void Init(VertexAttribute* attributes, int size);
+		VertexAttribute* GetBegin();
+		VertexAttribute& GetAttribute(int index);
 		void CalculateStride();
 
 

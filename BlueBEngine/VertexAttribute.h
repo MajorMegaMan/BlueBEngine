@@ -5,7 +5,7 @@
 
 namespace BBB
 {
-	struct VertexAttibute
+	struct VertexAttribute
 	{
 		GLint size = 0;
 		GLenum type = 0;

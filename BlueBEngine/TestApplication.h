@@ -10,12 +10,11 @@ class TestApplication : public Application
 	Transform m_testTransform;
 	Model m_testModel;
 	// a model needs
-	// this is a material
 	Shader m_shaderStuff;
-	//ShaderProgram m_shader;
-	//VertexLayout m_vertexLayout;
+
 	Texture2D m_testTexture;
 	Texture2D m_smileTexture;
+
 	// this is a mesh
 	IndexedMesh m_testMesh;
 

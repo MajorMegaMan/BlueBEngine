@@ -19,11 +19,11 @@ namespace BBB
 			delete[] m_layoutArray;
 		}
 
-		m_layoutArray = new VertexAttibute[size];
+		m_layoutArray = new VertexAttribute[size];
 		m_size = size;
 	}
 
-	void VertexLayout::Init(VertexAttibute* attributes, int size)
+	void VertexLayout::Init(VertexAttribute* attributes, int size)
 	{
 		Init(size);
 
@@ -33,12 +33,12 @@ namespace BBB
 		}
 	}
 
-	VertexAttibute* VertexLayout::GetBegin()
+	VertexAttribute* VertexLayout::GetBegin()
 	{
 		return m_layoutArray;
 	}
 
-	VertexAttibute& VertexLayout::GetAttribute(int index)
+	VertexAttribute& VertexLayout::GetAttribute(int index)
 	{
 		return m_layoutArray[index];
 	}
@@ -96,7 +96,7 @@ namespace BBB
 	{
 		for (int i = 0; i < m_size; i++)
 		{
-			VertexAttibute::EnableAttribArray(i);
+			VertexAttribute::EnableAttribArray(i);
 		}
 	}
 }

@@ -2,7 +2,7 @@
 
 namespace BBB
 {
-	void VertexAttibute::SetValues(GLint size, GLenum type, GLboolean normalized, GLsizei typeSize)
+	void VertexAttribute::SetValues(GLint size, GLenum type, GLboolean normalized, GLsizei typeSize)
 	{
 		this->size = size;
 		this->type = type;
@@ -10,12 +10,12 @@ namespace BBB
 		this->typeSize = typeSize;
 	}
 
-	void VertexAttibute::SetPointer(GLuint layoutIndex, GLsizei stride, int pointerOffset)
+	void VertexAttribute::SetPointer(GLuint layoutIndex, GLsizei stride, int pointerOffset)
 	{
 		glVertexAttribPointer(layoutIndex, size, type, normalized, stride, (void*)pointerOffset);
 	}
 
-	void VertexAttibute::EnableAttribArray(GLuint layoutIndex)
+	void VertexAttribute::EnableAttribArray(GLuint layoutIndex)
 	{
 		glEnableVertexAttribArray(layoutIndex);
 	}

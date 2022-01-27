@@ -1,6 +1,6 @@
 #pragma once
 #include "IndexedMesh.h"
-#include "ShaderProgram.h"
+#include "Shader.h"
 #include "VertexContainer.h"
 #include "Maths.h"
 #include <Utilities/DynamicArray.h>
@@ -10,12 +10,10 @@ using namespace GLHandles;
 
 class LineRenderer
 {
-	ShaderProgram m_shader;
 	DynamicArray<glm::vec2> m_positions;
 
 	glm::vec4 m_colour;
 
-	VertexLayout m_layout;
 	Mesh m_mesh;
 
 	typedef void (LineRenderer::* VoidAction)(glm::mat4x4);
@@ -47,4 +45,11 @@ private:
 	void ConfimedDraw(glm::mat4x4 MVP);
 
 	void GLDelete();
+
+public:
+	// Must be called before using any line renderer as it initialises a singleton shader
+	static void InitialiseShader();
+
+	// Must delete the singleton shader before opengl is terminated.
+	static void DeleteShader();
 };

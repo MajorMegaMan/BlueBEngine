@@ -12,7 +12,7 @@
 
 TestApplication::TestApplication()
 {
-	
+	LineRenderer::InitialiseShader();
 }
 
 void TestApplication::Init()
@@ -34,7 +34,7 @@ void TestApplication::Init()
 
 void TestApplication::Close()
 {
-
+	LineRenderer::DeleteShader();
 }
 
 void TestApplication::SetKeyInputs()
@@ -174,8 +174,9 @@ void TestApplication::SetupModel()
 	m_testModel.p_mesh = &m_testMesh;
 	m_testModel.p_shader = &m_shaderStuff;
 	
-	m_testModel.textures.Reserve(2);
 	m_testModel.SetModelMatrixName("transform");
+
+	m_testModel.textures.Reserve(2);
 	m_testModel.textures.PushBack(&m_testTexture);
 	m_testModel.textures.PushBack(&m_smileTexture);
 }
@@ -235,7 +236,7 @@ void TestApplication::GenerateMesh()
 void TestApplication::InitialiseLayouts()
 {
 	// Create Layout attributes
-	VertexAttibute layouts[3];
+	VertexAttribute layouts[3];
 	
 	// Vec3 attrib position
 	layouts[0].SetValues(3, GL_FLOAT, GL_FALSE, sizeof(float));

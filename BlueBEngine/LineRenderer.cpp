@@ -1,17 +1,13 @@
 #include "LineRenderer.h"
 
+Shader _lineShader;
+
 LineRenderer::LineRenderer()
 {
-	m_shader.LoadShaderProgram("line.vert", "line.frag");
 	SetColour({ 1.0f, 1.0f, 1.0f, 1.0f });
 
 	m_mesh.Generate();
 	m_mesh.SetUsage(GL_DYNAMIC_DRAW);
-
-	m_layout.Init(1);
-	auto pointer = m_layout.GetBegin();
-	pointer[0].SetValues(2, GL_FLOAT, GL_FALSE, sizeof(float));
-	m_layout.CalculateStride();
 }
 
 LineRenderer::~LineRenderer()
@@ -33,8 +29,6 @@ void LineRenderer::Clear()
 void LineRenderer::SetColour(glm::vec4 colour)
 {
 	m_colour = colour;
-	m_shader.UseShaderProgram();
-	m_shader.SetUniform4f("colour", (float*)&m_colour);
 }
 
 glm::vec4 LineRenderer::GetColour() const
@@ -61,11 +55,6 @@ void LineRenderer::AddShape(glm::vec2* vertices, int count)
 	}
 }
 
-void LineRenderer::GLDelete()
-{
-	m_mesh.Delete();
-}
-
 void LineRenderer::AddLineToDrawList(glm::vec2 start, glm::vec2 end)
 {
 	m_positions.PushBack(start);
@@ -75,8 +64,7 @@ void LineRenderer::AddLineToDrawList(glm::vec2 start, glm::vec2 end)
 void LineRenderer::Update()
 {
 	m_mesh.SetVertices((float*)m_positions.GetArray(), 2 * m_positions.GetSize());
-	m_layout.SetAttribPointers();
-	m_layout.Enable();
+	_lineShader.EnableLayout();
 }
 
 void LineRenderer::Empty(glm::mat4x4 MVP)
@@ -86,8 +74,9 @@ void LineRenderer::Empty(glm::mat4x4 MVP)
 
 void LineRenderer::UpdateDraw(glm::mat4x4 MVP)
 {
-	m_shader.UseShaderProgram();
-	m_shader.SetUniformMatrix4f("MVP", (float*)&MVP);
+	_lineShader.UseShader();
+	_lineShader.GetShader().SetUniformMatrix4f("MVP", (float*)&MVP);
+	_lineShader.GetShader().SetUniform4f("colour", (float*)&m_colour);
 	m_mesh.Bind();
 	Update();
 
@@ -98,9 +87,29 @@ void LineRenderer::UpdateDraw(glm::mat4x4 MVP)
 
 void LineRenderer::ConfimedDraw(glm::mat4x4 MVP)
 {
-	m_shader.UseShaderProgram();
-	m_shader.SetUniformMatrix4f("MVP", (float*)&MVP);
+	_lineShader.UseShader();
+	_lineShader.GetShader().SetUniformMatrix4f("MVP", (float*)&MVP);
+	_lineShader.GetShader().SetUniform4f("colour", (float*)&m_colour);
 	m_mesh.Bind();
 
 	glDrawArrays(GL_LINES, 0, m_positions.GetSize());
+}
+
+void LineRenderer::GLDelete()
+{
+	m_mesh.Delete();
+}
+
+void LineRenderer::InitialiseShader()
+{
+	_lineShader.LoadShader("line.vert", "line.frag");
+
+	VertexAttribute layouts[1];
+	layouts[0].SetValues(2, GL_FLOAT, GL_FALSE, sizeof(float));
+	_lineShader.SetLayout(layouts, 1);
+}
+
+void LineRenderer::DeleteShader()
+{
+	_lineShader.DeleteShader();
 }

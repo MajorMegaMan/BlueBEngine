@@ -12,7 +12,12 @@ namespace BBB
 		return m_shader;
 	}
 
-	void Shader::SetLayout(VertexAttibute* attributes, int size)
+	void Shader::DeleteShader()
+	{
+		m_shader.DeleteShaderProgram();
+	}
+
+	void Shader::SetLayout(VertexAttribute* attributes, int size)
 	{
 		m_layout.Init(attributes, size);
 		m_layout.CalculateStride();
