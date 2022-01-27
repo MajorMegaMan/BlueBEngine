@@ -20,6 +20,7 @@ namespace BBB
 		~VertexLayout();
 
 		void Init(int size);
+		void Init(VertexAttibute* attributes, int size);
 		VertexAttibute* GetBegin();
 		VertexAttibute& GetAttribute(int index);
 		void CalculateStride();

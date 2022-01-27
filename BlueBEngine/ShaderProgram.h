@@ -3,48 +3,53 @@
 
 namespace BBB
 {
-	class ShaderProgram
+	namespace GLHandles
 	{
-		GLuint m_shaderProgram;
+		class ShaderProgram
+		{
+			GLuint m_shaderProgram;
 
-		bool m_isLoaded = false;
+			bool m_isLoaded = false;
 
-	public:
-		ShaderProgram() {};
-		ShaderProgram(const char* vertFileName, const char* fragFileName);
-		~ShaderProgram();
+		public:
+			ShaderProgram() {};
+			ShaderProgram(const char* vertFileName, const char* fragFileName);
+			~ShaderProgram();
 
-		ShaderProgram(const ShaderProgram& other) = delete;
-		ShaderProgram& operator= (const ShaderProgram& other) = delete;
+			ShaderProgram(const ShaderProgram& other) = delete;
+			ShaderProgram& operator= (const ShaderProgram& other) = delete;
 
-		void LoadShaderProgram(const char* vertFileName, const char* fragFileName);
-		void CreateShaderProgram(const char* vertShaderSource, const char* fragShaderSource);
+			void LoadShaderProgram(const char* vertFileName, const char* fragFileName);
+			void CreateShaderProgram(const char* vertShaderSource, const char* fragShaderSource);
 
-		void UseShaderProgram();
+			void DeleteShaderProgram();
 
-		int GetUniformLocation(const char* uniformName);
+			void UseShaderProgram();
 
-		// This will use this shader program and find the location before setting the uniform variable
-		void SetUniform4f(const char* uniformName, float* vec4);
-		void SetUniform1i(const char* uniformName, int value);
-		void SetUniformMatrix4f(const char* uniformName, float* mat4);
+			int GetUniformLocation(const char* uniformName);
 
-		// This only sets the target location uniform variable. It does not use any specific shader and will therefore apply to the last used shader
-		static void SetUniform4f(int location, float* vec4);
-		static void SetUniform1i(int location, int value);
-		static void SetUniformMatrix4f(int location, float* mat4);
+			// This will use this shader program and find the location before setting the uniform variable
+			void SetUniform4f(const char* uniformName, float* vec4);
+			void SetUniform1i(const char* uniformName, int value);
+			void SetUniformMatrix4f(const char* uniformName, float* mat4);
 
-	private:
-		void LoadShader(GLuint& shaderHandle, int shaderType, const char* fileSource);
+			// This only sets the target location uniform variable. It does not use any specific shader and will therefore apply to the last used shader
+			static void SetUniform4f(int location, float* vec4);
+			static void SetUniform1i(int location, int value);
+			static void SetUniformMatrix4f(int location, float* mat4);
 
-		void CreateShader(GLuint& shaderHandle, int shaderType, const char* shaderSource);
+		private:
+			void LoadShader(GLuint& shaderHandle, int shaderType, const char* fileSource);
 
-		int CheckShaderCompileStatus(GLuint shader);
+			void CreateShader(GLuint& shaderHandle, int shaderType, const char* shaderSource);
 
-		void LogShader(GLuint shader, const char* shaderName, const char* fileName);
+			int CheckShaderCompileStatus(GLuint shader);
 
-		int CheckProgramCompileStatus(GLuint shaderProgram);
+			void LogShader(GLuint shader, const char* shaderName, const char* fileName);
 
-		void LogProgram(GLuint shaderProgram, const char* shaderName, const char* fileName);
-	};
+			int CheckProgramCompileStatus(GLuint shaderProgram);
+
+			void LogProgram(GLuint shaderProgram, const char* shaderName, const char* fileName);
+		};
+	}
 }

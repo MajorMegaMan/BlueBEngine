@@ -1,9 +1,9 @@
 #pragma once
-#include "Graphics.h"
+#include "UniformVar.h"
 
 namespace BBB
 {
-	class Texture2D
+	class Texture2D : public UniformVar
 	{
 		int width;
 		int height;
@@ -11,9 +11,14 @@ namespace BBB
 
 		GLuint textureHandle;
 
+		bool isLoaded = false;
+
 		void GenerateTexture();
 
 	public:
+		Texture2D();
+		~Texture2D();
+
 		void LoadImage(const char* fileName);
 
 		void Bind();
@@ -25,5 +30,8 @@ namespace BBB
 		static void SetActiveTexture(int textureUnit);
 
 		static void SetImageFlipVertical(bool value);
+
+	protected:
+		virtual void SetUniformFromLocation(int location, const void* data) override;
 	};
 }

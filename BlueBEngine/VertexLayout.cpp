@@ -14,8 +14,23 @@ namespace BBB
 
 	void VertexLayout::Init(int size)
 	{
+		if (m_layoutArray != nullptr)
+		{
+			delete[] m_layoutArray;
+		}
+
 		m_layoutArray = new VertexAttibute[size];
 		m_size = size;
+	}
+
+	void VertexLayout::Init(VertexAttibute* attributes, int size)
+	{
+		Init(size);
+
+		for (int i = 0; i < size; i++)
+		{
+			m_layoutArray[i] = attributes[i];
+		}
 	}
 
 	VertexAttibute* VertexLayout::GetBegin()

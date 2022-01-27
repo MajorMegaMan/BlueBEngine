@@ -1,20 +1,26 @@
 #pragma once
 #include "Application.h"
 #include "LineRenderer.h"
+#include "Model.h"
 
 using namespace BBB;
 
 class TestApplication : public Application
 {
 	Transform m_testTransform;
+	Model m_testModel;
 	// a model needs
-	ShaderProgram m_shader;
-	VertexLayout m_vertexLayout;
-	IndexedMesh m_testMesh;
+	// this is a material
+	Shader m_shaderStuff;
+	//ShaderProgram m_shader;
+	//VertexLayout m_vertexLayout;
 	Texture2D m_testTexture;
 	Texture2D m_smileTexture;
+	// this is a mesh
+	IndexedMesh m_testMesh;
 
 	Camera2D m_camera;
+	UniformMat4x4Helper m_MVPUniform;
 
 	LineRenderer lines;
 	LineRenderer followMouse;
@@ -47,11 +53,19 @@ public:
 	// Debugging shit
 	void DrawCircle(glm::vec2 centre, float size, int segmentCount);
 
+	void SetupModel();
+
+	void SetUpShader();
+
+	void SetUpMesh(VertexLayout& layout);
+
 	void GenerateMesh();
 
 	void InitialiseLayouts();
 
-	void SetLayoutData(VertexContainer& container);
+	void SetVertices(VertexContainer& container, VertexLayout& layout);
+
+	void LoadTextures();
 };
 
 void SetCallbackCamera(Camera2D& cam);

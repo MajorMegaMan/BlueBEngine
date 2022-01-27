@@ -16,26 +16,32 @@
     <Filter Include="Source Files\Engine">
       <UniqueIdentifier>{b0eacc6f-d73c-43f7-ab0c-92d74756b9a9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Engine\Shader">
-      <UniqueIdentifier>{79bd1227-bede-4821-86c5-ba7b69df81a2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Engine\Utilities">
       <UniqueIdentifier>{af501ef5-cfb9-4c9f-964b-53899aba1e1b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Engine\Mesh">
-      <UniqueIdentifier>{54645e56-04cf-467e-9aa0-f39d9a5b76c1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Engine\Mesh\Layouts">
-      <UniqueIdentifier>{f6fc62ae-a0b9-4f57-8925-c7552ab1fe8e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Engine\Mesh\VertexObjects">
-      <UniqueIdentifier>{b38b2f40-466c-436c-9e4c-712099724737}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Engine\Debug">
       <UniqueIdentifier>{a99e8daf-f2e7-4acf-a94f-b076e3f7f9d7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Engine\Application">
       <UniqueIdentifier>{feb94df1-124d-4f15-a131-8987a96e7b00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Graphics">
+      <UniqueIdentifier>{6fd01bf9-0598-485a-8d34-aa81b3d8660a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Graphics\Shader">
+      <UniqueIdentifier>{79bd1227-bede-4821-86c5-ba7b69df81a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Graphics\Mesh">
+      <UniqueIdentifier>{54645e56-04cf-467e-9aa0-f39d9a5b76c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Graphics\Layouts">
+      <UniqueIdentifier>{f6fc62ae-a0b9-4f57-8925-c7552ab1fe8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Graphics\UniformVar">
+      <UniqueIdentifier>{d205becd-f054-4724-bf94-842f2c4fe7fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Graphics\VertexObjects">
+      <UniqueIdentifier>{b38b2f40-466c-436c-9e4c-712099724737}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -64,31 +70,31 @@
       <Filter>Source Files\Engine\Utilities</Filter>
     </ClCompile>
     <ClCompile Include="Mesh.cpp">
-      <Filter>Source Files\Engine\Mesh</Filter>
+      <Filter>Source Files\Engine\Graphics\Mesh</Filter>
     </ClCompile>
     <ClCompile Include="IndexedMesh.cpp">
-      <Filter>Source Files\Engine\Mesh</Filter>
+      <Filter>Source Files\Engine\Graphics\Mesh</Filter>
     </ClCompile>
     <ClCompile Include="VertexAttribute.cpp">
-      <Filter>Source Files\Engine\Mesh\Layouts</Filter>
+      <Filter>Source Files\Engine\Graphics\Layouts</Filter>
     </ClCompile>
     <ClCompile Include="VertexContainer.cpp">
-      <Filter>Source Files\Engine\Mesh\Layouts</Filter>
+      <Filter>Source Files\Engine\Graphics\Layouts</Filter>
     </ClCompile>
     <ClCompile Include="VertexLayout.cpp">
-      <Filter>Source Files\Engine\Mesh\Layouts</Filter>
+      <Filter>Source Files\Engine\Graphics\Layouts</Filter>
     </ClCompile>
     <ClCompile Include="ElementBufferObject.cpp">
-      <Filter>Source Files\Engine\Mesh\VertexObjects</Filter>
+      <Filter>Source Files\Engine\Graphics\VertexObjects</Filter>
     </ClCompile>
     <ClCompile Include="VertexArrayObject.cpp">
-      <Filter>Source Files\Engine\Mesh\VertexObjects</Filter>
+      <Filter>Source Files\Engine\Graphics\VertexObjects</Filter>
     </ClCompile>
     <ClCompile Include="VertexBufferObject.cpp">
-      <Filter>Source Files\Engine\Mesh\VertexObjects</Filter>
+      <Filter>Source Files\Engine\Graphics\VertexObjects</Filter>
     </ClCompile>
     <ClCompile Include="ShaderProgram.cpp">
-      <Filter>Source Files\Engine\Shader</Filter>
+      <Filter>Source Files\Engine\Graphics\Shader</Filter>
     </ClCompile>
     <ClCompile Include="Camera2D.cpp">
       <Filter>Source Files\Engine</Filter>
@@ -101,6 +107,12 @@
     </ClCompile>
     <ClCompile Include="LineRenderer.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Source Files\Engine\Graphics\Shader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -129,31 +141,31 @@
       <Filter>Source Files\Engine\Utilities</Filter>
     </ClInclude>
     <ClInclude Include="ShaderProgram.h">
-      <Filter>Source Files\Engine\Shader</Filter>
+      <Filter>Source Files\Engine\Graphics\Shader</Filter>
     </ClInclude>
     <ClInclude Include="Mesh.h">
-      <Filter>Source Files\Engine\Mesh</Filter>
+      <Filter>Source Files\Engine\Graphics\Mesh</Filter>
     </ClInclude>
     <ClInclude Include="IndexedMesh.h">
-      <Filter>Source Files\Engine\Mesh</Filter>
+      <Filter>Source Files\Engine\Graphics\Mesh</Filter>
     </ClInclude>
     <ClInclude Include="VertexAttribute.h">
-      <Filter>Source Files\Engine\Mesh\Layouts</Filter>
+      <Filter>Source Files\Engine\Graphics\Layouts</Filter>
     </ClInclude>
     <ClInclude Include="VertexContainer.h">
-      <Filter>Source Files\Engine\Mesh\Layouts</Filter>
+      <Filter>Source Files\Engine\Graphics\Layouts</Filter>
     </ClInclude>
     <ClInclude Include="VertexLayout.h">
-      <Filter>Source Files\Engine\Mesh\Layouts</Filter>
+      <Filter>Source Files\Engine\Graphics\Layouts</Filter>
     </ClInclude>
     <ClInclude Include="ElementBufferObject.h">
-      <Filter>Source Files\Engine\Mesh\VertexObjects</Filter>
+      <Filter>Source Files\Engine\Graphics\VertexObjects</Filter>
     </ClInclude>
     <ClInclude Include="VertexArrayObject.h">
-      <Filter>Source Files\Engine\Mesh\VertexObjects</Filter>
+      <Filter>Source Files\Engine\Graphics\VertexObjects</Filter>
     </ClInclude>
     <ClInclude Include="VertexBufferObject.h">
-      <Filter>Source Files\Engine\Mesh\VertexObjects</Filter>
+      <Filter>Source Files\Engine\Graphics\VertexObjects</Filter>
     </ClInclude>
     <ClInclude Include="Maths.h">
       <Filter>Source Files\Engine\Utilities</Filter>
@@ -172,6 +184,21 @@
     </ClInclude>
     <ClInclude Include="LineRenderer.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UniformVar.h">
+      <Filter>Source Files\Engine\Graphics\UniformVar</Filter>
+    </ClInclude>
+    <ClInclude Include="string.h">
+      <Filter>Source Files\Engine\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="UniformVarHelpers.h">
+      <Filter>Source Files\Engine\Graphics\UniformVar</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Source Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Source Files\Engine\Graphics\Shader</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

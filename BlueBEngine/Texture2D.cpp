@@ -34,6 +34,7 @@ namespace BBB
 				Debug_Print("Failed to find correct Channels in texture \"");
 				Debug_Print(fileName);
 				Debug_PrintLine("\"");
+				DeleteTexture();
 			}
 		}
 		else
@@ -42,6 +43,7 @@ namespace BBB
 			Debug_Print(" \"");
 			Debug_Print(fileName);
 			Debug_PrintLine("\"");
+			DeleteTexture();
 		}
 
 		stbi_image_free(data);
@@ -49,6 +51,7 @@ namespace BBB
 
 	void Texture2D::GenerateTexture()
 	{
+		DeleteTexture();
 		glGenTextures(1, &textureHandle);
 		Bind();
 
@@ -56,6 +59,17 @@ namespace BBB
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+		isLoaded = true;
+	}
+
+	Texture2D::Texture2D()
+	{
+	}
+
+	Texture2D::~Texture2D()
+	{
+		DeleteTexture();
 	}
 
 	void Texture2D::Bind()
@@ -71,7 +85,11 @@ namespace BBB
 
 	void Texture2D::DeleteTexture()
 	{
-		glDeleteTextures(1, &textureHandle);
+		if (isLoaded)
+		{
+			glDeleteTextures(1, &textureHandle);
+			isLoaded = false;
+		}
 	}
 
 	void Texture2D::SetActiveTexture(int textureUnit)
@@ -82,5 +100,10 @@ namespace BBB
 	void Texture2D::SetImageFlipVertical(bool value)
 	{
 		stbi_set_flip_vertically_on_load(true);
+	}
+
+	void Texture2D::SetUniformFromLocation(int location, const void* data)
+	{
+		GLHandles::ShaderProgram::SetUniform1i(location, *(int*)data);
 	}
 }

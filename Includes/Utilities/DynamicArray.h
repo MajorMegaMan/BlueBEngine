@@ -55,13 +55,6 @@ public:
 		return m_size;
 	}
 
-private:
-	void Resize()
-	{
-		// allocate new array
-		Reserve(m_capacity * 2);
-	}
-
 	void Reserve(int targetCapacity)
 	{
 		// check if target capacity will be able to contain the array
@@ -84,5 +77,12 @@ private:
 		delete[] m_valueArray;
 		// assign to new
 		m_valueArray = newArray;
+	}
+	
+private:
+	void Resize()
+	{
+		// allocate new array
+		Reserve(m_capacity * 2);
 	}
 };

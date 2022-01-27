@@ -8,12 +8,17 @@ namespace BBB
 	{
 		GLVertex::ElementBufferObject EBO;
 
+		DynamicArray<unsigned int> indices;
 
 	public:
+
 		void Generate() override;
 		void Delete() override;
 		void SetIndices(unsigned int* indicesArray, int size);
 
-		void IDraw(GLsizei indiceCount, GLenum type);
+		// to be used after indices has been filled
+		void ApplyIndices();
+
+		void Draw(GLHandles::ShaderProgram& shader) override;
 	};
 }

@@ -4,14 +4,21 @@ namespace BBB
 {
 	void Mesh::Generate()
 	{
+		// Try to delete first before Generating
+		Delete();
+
 		VAO.GenArrays();
 		VBO.GenBuffers();
 	}
 
 	void Mesh::Delete()
 	{
-		VBO.DeleteBuffers();
-		VAO.DeleteArrays();
+		if (isLoaded)
+		{
+			VBO.DeleteBuffers();
+			VAO.DeleteArrays();
+			isLoaded = false;
+		}
 	}
 
 	Mesh::Mesh()
@@ -21,7 +28,7 @@ namespace BBB
 
 	Mesh::~Mesh()
 	{
-		
+		Delete();
 	}
 
 	void Mesh::SetVertices(float* verticesArray, int size)
@@ -29,6 +36,11 @@ namespace BBB
 		VAO.Bind();
 		VBO.Bind();
 		VBO.SetData(size * sizeof(float), verticesArray, usage);
+	}
+
+	void Mesh::ApplyVertices()
+	{
+		SetVertices((float*)vertices.GetVertexArray(), vertices.GetVerticeCount() * vertices.GetLayout()->FindTotalSize());
 	}
 
 	void Mesh::SetUsage(GLenum usage)
@@ -41,9 +53,9 @@ namespace BBB
 		VAO.Bind();
 	}
 
-	void Mesh::Draw(int verticesCount)
+	void Mesh::Draw(GLHandles::ShaderProgram& shader)
 	{
 		Bind();
-		glDrawArrays(GL_TRIANGLES, 0, verticesCount);
+		glDrawArrays(GL_TRIANGLES, 0, vertices.GetVerticeCount());
 	}
 }

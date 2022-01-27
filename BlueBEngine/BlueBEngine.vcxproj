@@ -156,6 +156,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="LineRenderer.cpp" />
+    <ClCompile Include="Model.cpp" />
+    <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
     <ClCompile Include="TestApplication.cpp" />
     <ClCompile Include="Mesh.cpp" />
@@ -179,13 +181,18 @@
     <ClInclude Include="IndexedMesh.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="KeyCallbacks.h" />
+    <ClInclude Include="Model.h" />
+    <ClInclude Include="Shader.h" />
     <ClInclude Include="Maths.h" />
     <ClInclude Include="LineRenderer.h" />
     <ClInclude Include="ShaderProgram.h" />
+    <ClInclude Include="string.h" />
     <ClInclude Include="TestApplication.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Texture2D.h" />
     <ClInclude Include="Transform.h" />
+    <ClInclude Include="UniformVarHelpers.h" />
+    <ClInclude Include="UniformVar.h" />
     <ClInclude Include="VertexArrayObject.h" />
     <ClInclude Include="VertexBufferObject.h" />
     <ClInclude Include="VertexAttribute.h" />

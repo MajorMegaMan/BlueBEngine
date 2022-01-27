@@ -6,6 +6,7 @@
 #include <Utilities/DynamicArray.h>
 
 using namespace BBB;
+using namespace GLHandles;
 
 class LineRenderer
 {

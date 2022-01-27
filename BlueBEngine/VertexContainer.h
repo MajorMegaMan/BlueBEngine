@@ -1,6 +1,5 @@
 #pragma once
 #include "VertexLayout.h"
-#include "Mesh.h"
 
 // This is a container that contains the vertice array that is to be sent to the GPU.
 // It has helpful functions to manage the data that is to be sent.
@@ -36,8 +35,12 @@ namespace BBB
 
 		void Init(const VertexLayout& layout, unsigned int verticeCount);
 
+		const VertexLayout* GetLayout() const;
+
+		void* GetVertexArray() const;
+		int GetVerticeCount() const;
+
 		// Choose 
 		void SetVertex(unsigned int vertexIndex, unsigned int layoutIndex, void* data);
-		void ApplyToMesh(Mesh& mesh);
 	};
 }

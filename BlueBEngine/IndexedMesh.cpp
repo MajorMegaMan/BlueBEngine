@@ -18,13 +18,23 @@ namespace BBB
 
 	void IndexedMesh::SetIndices(unsigned int* indicesArray, int size)
 	{
-		EBO.Bind();
-		EBO.SetData(size * sizeof(unsigned int), indicesArray, GL_STATIC_DRAW);
+		indices.Clear();
+		indices.Reserve(size);
+		for (int i = 0; i < 6; i++)
+		{
+			indices.PushBack(indicesArray[i]);
+		}
 	}
 
-	void IndexedMesh::IDraw(GLsizei indiceCount, GLenum type)
+	void IndexedMesh::ApplyIndices()
+	{
+		EBO.Bind();
+		EBO.SetData(indices.GetSize() * sizeof(unsigned int), indices.GetArray(), usage);
+	}
+
+	void IndexedMesh::Draw(GLHandles::ShaderProgram& shader)
 	{
 		VAO.Bind();
-		glDrawElements(GL_TRIANGLES, indiceCount, type, 0);
+		glDrawElements(GL_TRIANGLES, indices.GetSize(), GL_UNSIGNED_INT, 0);
 	}
 }
