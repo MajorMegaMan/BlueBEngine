@@ -9,16 +9,13 @@ namespace BBB
 
 	void Model::Draw(glm::mat4x4 modelMat)
 	{
-		// update model mat
-		m_modelMat.SetUniformValue(&modelMat, sizeof(modelMat));
-
 		// use shader
-		p_shader->UseShader();
+		m_material.UseMaterial();
 		// apply uniforms
-		m_modelMat.ApplyUniform(p_shader->GetShader());
+		m_modelMat.ApplyUniform(m_material.GetShader()->GetShader(), &modelMat);
 		//apply textures as uniforms
 		BindTextures();
-		p_mesh->Draw(p_shader->GetShader());
+		p_mesh->Draw(m_material.GetShader()->GetShader());
 	}
 
 	void Model::BindTextures()
@@ -27,7 +24,7 @@ namespace BBB
 		{
 			auto texture = textures.GetValue(i);
 			texture->SetActiveTexture(i);
-			texture->ApplyUniform(p_shader->GetShader());
+			texture->ApplyUniform(m_material.GetShader()->GetShader(), &i);
 			texture->Bind(i);
 		}
 		glActiveTexture(GL_TEXTURE0);

@@ -114,6 +114,15 @@
     <ClCompile Include="Shader.cpp">
       <Filter>Source Files\Engine\Graphics\Shader</Filter>
     </ClCompile>
+    <ClCompile Include="UniformVar.cpp">
+      <Filter>Source Files\Engine\Graphics\UniformVar</Filter>
+    </ClCompile>
+    <ClCompile Include="UniformValue.cpp">
+      <Filter>Source Files\Engine\Graphics\UniformVar</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>Source Files\Engine\Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Debug.h">
@@ -199,6 +208,12 @@
     </ClInclude>
     <ClInclude Include="Shader.h">
       <Filter>Source Files\Engine\Graphics\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Source Files\Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="UniformValue.h">
+      <Filter>Source Files\Engine\Graphics\UniformVar</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

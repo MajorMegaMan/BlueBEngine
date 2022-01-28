@@ -6,6 +6,8 @@
 
 namespace BBB
 {
+	class Material;
+
 	// This class contains all the varibles needed for a shader to function properly
 	class Shader
 	{
@@ -34,11 +36,11 @@ namespace BBB
 
 		void SetUniformTarget(int index, UniformVar* target);
 
-		void UpdateUniforms();
-
 		void SetTextureCount(int count);
 		int GetTextureCount() const;
 
 		void UseShader();
+
+		friend Material;
 	};
 }

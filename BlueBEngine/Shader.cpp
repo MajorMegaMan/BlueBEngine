@@ -49,14 +49,6 @@ namespace BBB
 		m_uniforms.GetArray()[index] = target;
 	}
 
-	void Shader::UpdateUniforms()
-	{
-		for (int i = 0; i < m_uniforms.GetSize(); i++)
-		{
-			m_uniforms.GetValue(i)->ApplyUniform(m_shader);
-		}
-	}
-
 	void Shader::SetTextureCount(int count)
 	{
 		m_textureCount = count;
@@ -71,6 +63,5 @@ namespace BBB
 	void Shader::UseShader()
 	{
 		m_shader.UseShaderProgram();
-		UpdateUniforms();
 	}
 }

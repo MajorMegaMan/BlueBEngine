@@ -63,7 +63,7 @@ void TestApplication::Update()
 
 	float camSpeed = deltaTime * CAM_MOVE_SPEED * m_camera.GetCamHeight();
 
-	//m_testTransform.Rotate(deltaTime * 90, { 0.0f, 0.0f, 1.0f });
+	m_testTransform.Rotate(deltaTime * 90, { 0.0f, 0.0f, 1.0f });
 
 	if (TestKey(GLFW_KEY_W))
 	{
@@ -107,9 +107,6 @@ void TestApplication::Render()
 
 	auto mat = m_testTransform.CalcMatrix();
 	mat = camMat * mat;
-
-	m_MVPUniform.SetUniformValue(&mat, sizeof(mat));
-
 
 	m_testModel.Draw(mat);
 
@@ -172,7 +169,7 @@ void TestApplication::DrawCircle(glm::vec2 centre, float size, int segmentCount)
 void TestApplication::SetupModel()
 {
 	m_testModel.p_mesh = &m_testMesh;
-	m_testModel.p_shader = &m_shaderStuff;
+	m_testModel.m_material.SetShader(m_shaderStuff);
 	
 	m_testModel.SetModelMatrixName("transform");
 
@@ -190,11 +187,11 @@ void TestApplication::SetUpShader()
 	InitialiseLayouts();
 
 	// Set Uniform pointers
-	m_shaderStuff.ReserveUniformSize(1);
-	m_shaderStuff.SetUniformTarget(0, &m_MVPUniform);
+	//m_shaderStuff.ReserveUniformSize(1);
+	//m_shaderStuff.SetUniformTarget(0, &m_MVPUniform);
 
 	// Set value of uniforms
-	m_MVPUniform.SetUniformName("transform");
+	//m_MVPUniform.SetUniformName("transform");
 
 	// Set Texture count
 	m_shaderStuff.SetTextureCount(2);
@@ -305,11 +302,6 @@ void TestApplication::LoadTextures()
 
 	m_testTexture.SetUniformName("texture1");
 	m_smileTexture.SetUniformName("texture2");
-
-	int texIndex = 0;
-	m_testTexture.SetUniformValue(&texIndex, sizeof(texIndex));
-	texIndex = 1;
-	m_smileTexture.SetUniformValue(&texIndex, sizeof(texIndex));
 }
 
 Camera2D* callbackCamera;

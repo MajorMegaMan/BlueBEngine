@@ -19,7 +19,6 @@ class TestApplication : public Application
 	IndexedMesh m_testMesh;
 
 	Camera2D m_camera;
-	UniformMat4x4Helper m_MVPUniform;
 
 	LineRenderer lines;
 	LineRenderer followMouse;

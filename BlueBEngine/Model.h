@@ -1,6 +1,6 @@
 #pragma once
 #include "IndexedMesh.h"
-#include "Shader.h"
+#include "Material.h"
 #include "Maths.h"
 #include "UniformVarHelpers.h"
 
@@ -11,7 +11,7 @@ namespace BBB
 		UniformMat4x4Helper m_modelMat;
 
 	public:
-		Shader* p_shader = nullptr;
+		Material m_material;
 		Mesh* p_mesh = nullptr;
 
 		DynamicArray<Texture2D*> textures;
