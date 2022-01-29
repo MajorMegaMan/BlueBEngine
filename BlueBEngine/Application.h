@@ -13,6 +13,9 @@ namespace BBB
 	{
 		AppWindow m_appWindow;
 
+		float lastTime = 0.0f;
+		float deltaTime = 0.0f;
+
 	public:
 
 		Application();
@@ -26,7 +29,7 @@ namespace BBB
 
 		virtual void Close();
 
-		virtual void Update();
+		virtual void Update(float deltaTime);
 		virtual void Render();
 
 		// this can be overridden for user inputs

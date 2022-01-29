@@ -2,6 +2,8 @@
 #include "Application.h"
 #include "LineRenderer.h"
 #include "Model.h"
+#include "Geometry.h"
+#include "TriangleRenderer.h"
 
 using namespace BBB;
 
@@ -12,24 +14,21 @@ class TestApplication : public Application
 	// a model needs
 	Shader m_shaderStuff;
 
-	Texture2D m_testTexture;
-	Texture2D m_smileTexture;
-
 	// this is a mesh
 	IndexedMesh m_testMesh;
 
 	Camera2D m_camera;
 
+	DynamicArray<glm::vec2> points;
+
 	LineRenderer lines;
 	LineRenderer followMouse;
+	TriangleRender triRenders;
 
 	bool isAdding = false;
 	glm::vec2 lastAdded = { 0.0f, 0.0f };
 
 	glm::vec2 mousePos;
-
-	float lastTime = 0.0f;
-	float deltaTime = 0.0f;
 
 public:
 	TestApplication();
@@ -40,7 +39,7 @@ public:
 
 	void SetKeyInputs() override;
 
-	void Update() override;
+	void Update(float deltaTime) override;
 
 	void Render() override;
 
@@ -62,8 +61,6 @@ public:
 	void InitialiseLayouts();
 
 	void SetVertices(VertexContainer& container, VertexLayout& layout);
-
-	void LoadTextures();
 };
 
 void SetCallbackCamera(Camera2D& cam);

@@ -2,8 +2,8 @@
 #include "Debug.h"
 #include "Input.h"
 
-#define TEST_VERT_FILE "basic.vert"
-#define TEST_FRAG_FILE "basic.frag"
+#define TEST_VERT_FILE "unlitShape.vert"
+#define TEST_FRAG_FILE "unlitShape.frag"
 #define TEST_UNIFORM_FRAG "uniformTest.frag"
 
 #define CAM_HEIGHT 10.0f
@@ -25,8 +25,6 @@ void TestApplication::Init()
 	SetUpShader();
 	SetUpMesh(m_shaderStuff.GetLayout());
 
-	LoadTextures();
-
 	m_camera.SetCamHeight(CAM_HEIGHT);
 
 	lines.SetColour({ 1.0f, 0.0f, 0.0f, 1.0f });
@@ -44,12 +42,8 @@ void TestApplication::SetKeyInputs()
 
 bool spaceDown = false;
 
-void TestApplication::Update()
+void TestApplication::Update(float deltaTime)
 {
-	float time = glfwGetTime();
-	deltaTime = time - lastTime;
-	lastTime = time;
-
 	double mouseX, mouseY;
 	GetCursorPos(mouseX, mouseY);
 	mousePos.x = mouseX;
@@ -63,7 +57,7 @@ void TestApplication::Update()
 
 	float camSpeed = deltaTime * CAM_MOVE_SPEED * m_camera.GetCamHeight();
 
-	m_testTransform.Rotate(deltaTime * 90, { 0.0f, 0.0f, 1.0f });
+	//m_testTransform.Rotate(deltaTime * 90, { 0.0f, 0.0f, 1.0f });
 
 	if (TestKey(GLFW_KEY_W))
 	{
@@ -116,6 +110,26 @@ void TestApplication::Render()
 		followMouse.AddLine(lastAdded, mousePos);
 	}
 
+	int triSize = 0;
+	auto triangles = triRenders.GetTriArray(triSize);
+
+	if (triSize > 0)
+	{
+		for (int i = 0; i < triSize; i++)
+		{
+			if (triangles[i].PointInTriangle({ mousePos.x, mousePos.y, 0.0f }))
+			{
+				triRenders.SetTriangleColour(i, { 1.0f, 0.0f, 0.0f, 0.0f });
+			}
+			else
+			{
+				triRenders.SetTriangleColour(i, { 0.0f, 1.0f, 0.0f, 0.0f });
+			}
+		}
+		triRenders.ApplyVertices();
+	}
+
+	triRenders.Draw(camMat);
 	lines.Draw(camMat);
 	followMouse.Draw(camMat);
 }
@@ -133,6 +147,7 @@ void TestApplication::OnMouseClick(int button)
 		{
 			DrawCircle(mousePos, 0.05f, 32);
 		}
+		triRenders.AddToTriConstruct({ mousePos.x, mousePos.y, 0.0f });
 	}
 
 	if (button == 1)
@@ -140,6 +155,8 @@ void TestApplication::OnMouseClick(int button)
 		isAdding = !isAdding;
 		lastAdded = mousePos;
 		followMouse.Clear();
+
+		triRenders.ClearTriangles();
 	}
 }
 
@@ -172,10 +189,6 @@ void TestApplication::SetupModel()
 	m_testModel.m_material.SetShader(m_shaderStuff);
 	
 	m_testModel.SetModelMatrixName("transform");
-
-	m_testModel.textures.Reserve(2);
-	m_testModel.textures.PushBack(&m_testTexture);
-	m_testModel.textures.PushBack(&m_smileTexture);
 }
 
 void TestApplication::SetUpShader()
@@ -201,21 +214,13 @@ void TestApplication::SetUpMesh(VertexLayout& layout)
 {
 	GenerateMesh();
 	// Apply vertices to mesh
-
+	m_testMesh.SetUsage(GL_DYNAMIC_DRAW);
 	// Create container to convert Layouts to be used in shader
 	SetVertices(m_testMesh.vertices, layout);
 
 	// Send the container variables to the mesh
 	m_testMesh.ApplyVertices();
-
-	unsigned int indices[] = {  // note that we start from 0!
-		0, 1, 3,   // first triangle
-		1, 2, 3    // second triangle
-	};
-
-	// apply indices to mesh
 	// must apply directly after SetVertices as this does not conatin another Rebind of the desired VAO
-	m_testMesh.SetIndices(indices, 6);
 	m_testMesh.ApplyIndices();
 
 	//m_shaderStuff.EnableLayout();
@@ -233,7 +238,7 @@ void TestApplication::GenerateMesh()
 void TestApplication::InitialiseLayouts()
 {
 	// Create Layout attributes
-	VertexAttribute layouts[3];
+	VertexAttribute layouts[2];
 	
 	// Vec3 attrib position
 	layouts[0].SetValues(3, GL_FLOAT, GL_FALSE, sizeof(float));
@@ -241,67 +246,35 @@ void TestApplication::InitialiseLayouts()
 	// Vec3 attrib colour
 	layouts[1].SetValues(3, GL_FLOAT, GL_FALSE, sizeof(float));
 
-	// Vec2 attrib texture UVs
-	layouts[2].SetValues(2, GL_FLOAT, GL_FALSE, sizeof(float));
-
 	//m_vertexLayout.CalculateStride();
-	m_shaderStuff.SetLayout(layouts, 3);
+	m_shaderStuff.SetLayout(layouts, 2);
 }
 
 void TestApplication::SetVertices(VertexContainer& container, VertexLayout& layout)
 {
-	// positions
-	glm::vec3 vertices[] = {
-	{ 0.5f,  0.5f, 0.0f},  // top right
-	{ 0.5f, -0.5f, 0.0f},  // bottom right
-	{-0.5f, -0.5f, 0.0f},  // bottom left
-	{-0.5f,  0.5f, 0.0f}   // top left 
+	//InitialiseIndexedQuad(m_testMesh, layout);
+
+	glm::vec3 positions[] = {
+	 {0.0f,  1.0f, 0.0f},
+	 {1.0f,  -1.0f, 0.0f},
+	 {-1.0f,  -1.0f, 0.0f}
 	};
+
+	InitialiseIndexedTriWithCentre(positions, m_testMesh, layout);
 
 	// colours
-	glm::vec3 colours[] = {
-	 {1.0f,  0.0f, 0.0f},  // top right
-	 {0.0f,  1.0f, 0.0f},  // bottom right
-	 {0.0f,  0.0f, 1.0f},  // bottom left
-	 {1.0f,  0.0f, 1.0f}   // top left 
+	glm::vec4 colours[] = {
+	 {1.0f,  0.0f, 0.0f, 1.0f},  // top right
+	 {0.0f,  1.0f, 0.0f, 1.0f},  // bottom right
+	 {0.0f,  0.0f, 1.0f, 1.0f},  // bottom left
+	 {1.0f,  0.0f, 1.0f, 1.0f}   // top left 
 	};
-
-	glm::vec2 UVs[] = {
-	{1.0f,  1.0f},  // top right
-	{1.0f,  0.0f},  // bottom right
-	{0.0f,  0.0f},  // bottom left
-	{0.0f,  1.0f}   // top left 
-	};
-
-	// initialise vertices with layouts
-	container.Init(layout, 4);
-
-	// Set positions attribute in container
-	for (int i = 0; i < 4; i++)
-	{
-		container.SetVertex(i, 0, vertices + i);
-	}
 
 	// Set colours attribute in container
 	for (int i = 0; i < 4; i++)
 	{
 		container.SetVertex(i, 1, colours + i);
 	}
-
-	// Set colours attribute in container
-	for (int i = 0; i < 4; i++)
-	{
-		container.SetVertex(i, 2, UVs + i);
-	}
-}
-
-void TestApplication::LoadTextures()
-{
-	m_testTexture.LoadImage("container.jpg");
-	m_smileTexture.LoadImage("awesomeface.png");
-
-	m_testTexture.SetUniformName("texture1");
-	m_smileTexture.SetUniformName("texture2");
 }
 
 Camera2D* callbackCamera;

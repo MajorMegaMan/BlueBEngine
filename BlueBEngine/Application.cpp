@@ -35,7 +35,10 @@ namespace BBB
 		Init();
 		while (!glfwWindowShouldClose(m_appWindow.m_window))
 		{
-			Update();
+			float time = glfwGetTime();
+			deltaTime = time - lastTime;
+			lastTime = time;
+			Update(deltaTime);
 			Render();
 
 			glfwSwapBuffers(m_appWindow.m_window);
@@ -54,7 +57,7 @@ namespace BBB
 
 	}
 
-	void Application::Update()
+	void Application::Update(float deltaTime)
 	{
 
 	}

@@ -43,12 +43,15 @@
     <Filter Include="Source Files\Engine\Graphics\VertexObjects">
       <UniqueIdentifier>{b38b2f40-466c-436c-9e4c-712099724737}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Engine\Geometry">
+      <UniqueIdentifier>{ec54b353-0322-4553-8249-0e28ccd80a02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Glad">
+      <UniqueIdentifier>{2c043989-a827-4e70-8120-6fff23fafd2a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Includes\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Debug.cpp">
@@ -122,6 +125,15 @@
     </ClCompile>
     <ClCompile Include="Material.cpp">
       <Filter>Source Files\Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Geometry.cpp">
+      <Filter>Source Files\Engine\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="TriangleRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Includes\glad.c">
+      <Filter>Source Files\Engine\Glad</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -214,6 +226,12 @@
     </ClInclude>
     <ClInclude Include="UniformValue.h">
       <Filter>Source Files\Engine\Graphics\UniformVar</Filter>
+    </ClInclude>
+    <ClInclude Include="Geometry.h">
+      <Filter>Source Files\Engine\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="TriangleRenderer.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

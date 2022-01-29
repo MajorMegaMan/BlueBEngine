@@ -3,6 +3,12 @@
 #include <sstream>
 #include <string>
 
+void Debug_Print(string string)
+{
+	// print to console
+	std::cout << string;
+}
+
 void Debug_Print(const char* string)
 {
 	// ensure the char array is safe to use
@@ -19,6 +25,12 @@ void Debug_Print(int value)
 
 	// print to console
 	std::cout << toPrint;
+}
+
+void Debug_PrintLine(string string)
+{
+	// print to console
+	std::cout << string << std::endl;
 }
 
 void Debug_PrintLine(const char* string)
