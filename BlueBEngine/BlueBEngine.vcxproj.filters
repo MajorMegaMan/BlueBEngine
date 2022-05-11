@@ -135,6 +135,39 @@
     <ClCompile Include="..\Includes\glad.c">
       <Filter>Source Files\Engine\Glad</Filter>
     </ClCompile>
+    <ClCompile Include="Voronoi\DelaunayMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Voronoi\DelDirectionalEdge.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Voronoi\DelHull.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Voronoi\DelPoint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Voronoi\DelTri.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Voronoi\Vector2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Voronoi\Vector3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Voronoi\VoronoiBiSector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Voronoi\VoronoiDiagram.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Voronoi\VoronoiPoint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Voronoi\VoronoiShape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Debug.h">
@@ -231,6 +264,48 @@
       <Filter>Source Files\Engine\Geometry</Filter>
     </ClInclude>
     <ClInclude Include="TriangleRenderer.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Voronoi\CycleLinkedList.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Voronoi\DelaunayMap.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Voronoi\DelDirectionalEdge.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Voronoi\DelHull.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Voronoi\DelPoint.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Voronoi\DelTri.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Voronoi\DLinkedList.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Voronoi\DynamicArray.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Voronoi\Vector2.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Voronoi\Vector3.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Voronoi\VoronoiBiSector.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Voronoi\VoronoiDiagram.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Voronoi\VoronoiPoint.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Voronoi\VoronoiShape.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

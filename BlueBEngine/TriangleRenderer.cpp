@@ -48,6 +48,11 @@ void TriangleRender::ClearTriConstruct()
 	m_constructingTri.Clear();
 }
 
+void TriangleRender::AddTriangle(Triangle triangle)
+{
+	m_tris.PushBack(triangle);
+}
+
 void TriangleRender::ClearTriangles()
 {
 	m_tris.Clear();

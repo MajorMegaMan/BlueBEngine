@@ -62,6 +62,8 @@ public:
 	void AddToTriConstruct(glm::vec3 position);
 	void ClearTriConstruct();
 
+	void AddTriangle(Triangle triangle);
+
 	void ClearTriangles();
 
 	void Draw(glm::mat4x4 transform);
@@ -72,8 +74,8 @@ public:
 
 	void ApplyVertices();
 
-private:
 	void UpdateTriangles();
+private:
 
 	void UpdateTriangle(VertexContainer& vertices, int index);
 

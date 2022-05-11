@@ -104,11 +104,13 @@ void TestApplication::Render()
 
 	m_testModel.Draw(mat);
 
+	followMouse.Clear();
 	if (isAdding)
 	{
-		followMouse.Clear();
 		followMouse.AddLine(lastAdded, mousePos);
 	}
+
+	DrawCircle(followMouse, mousePos, 0.05f, 32);
 
 	int triSize = 0;
 	auto triangles = triRenders.GetTriArray(triSize);
@@ -145,9 +147,41 @@ void TestApplication::OnMouseClick(int button)
 		}
 		else
 		{
-			DrawCircle(mousePos, 0.05f, 32);
+			DrawCircle(lines, mousePos, 0.05f, 32);
 		}
-		triRenders.AddToTriConstruct({ mousePos.x, mousePos.y, 0.0f });
+
+		points.PushBack(mousePos);
+		if (points.GetSize() > 2)
+		{
+			float startTime = glfwGetTime();
+			m_delMap.Clear();
+			m_delMap.Init((Vector2*)points.GetArray(), points.GetSize());
+			float delMapTime = glfwGetTime() - startTime;
+			Debug_Print("DelMapTime: ");
+			Debug_PrintLine(std::to_string(delMapTime));
+			
+
+			float drawInitStart = glfwGetTime();
+			int triCount = m_delMap.GetTriCount();
+			auto triArray = m_delMap.GetTriBegin();
+			for (int i = 0; i < triCount; i++)
+			{
+				Triangle tri;
+				for (int j = 0; j < 3; j++)
+				{
+					const DelPoint* pos = triArray[i].GetPoint(j);
+					tri.positions[j] = {pos->x, pos->y, 0.0f};
+				}
+				tri.colour = { 0.0f, 1.0f, 0.0f, 0.0f };
+				triRenders.AddTriangle(tri);
+			}
+			triRenders.UpdateTriangles();
+			triRenders.ApplyVertices();
+			Debug_Print("TriSetTime: ");
+			float initTime = glfwGetTime() - drawInitStart;
+			Debug_PrintLine(std::to_string(initTime));
+			Debug_EndLine();
+		}
 	}
 
 	if (button == 1)
@@ -156,6 +190,8 @@ void TestApplication::OnMouseClick(int button)
 		lastAdded = mousePos;
 		followMouse.Clear();
 
+		points.Clear();
+		m_delMap.Clear();
 		triRenders.ClearTriangles();
 	}
 }
@@ -165,7 +201,7 @@ void TestApplication::OnMouseRelease(int button)
 
 }
 
-void TestApplication::DrawCircle(glm::vec2 centre, float size, int segmentCount)
+void TestApplication::DrawCircle(LineRenderer& lines, glm::vec2 centre, float size, int segmentCount)
 {
 	float cosAngle = cos(2 * 3.14159f / segmentCount);
 	float sinAngle = sin(2 * 3.14159f / segmentCount);

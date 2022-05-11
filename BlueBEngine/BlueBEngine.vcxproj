@@ -173,6 +173,17 @@
     <ClCompile Include="VertexAttribute.cpp" />
     <ClCompile Include="VertexContainer.cpp" />
     <ClCompile Include="VertexLayout.cpp" />
+    <ClCompile Include="Voronoi\DelaunayMap.cpp" />
+    <ClCompile Include="Voronoi\DelDirectionalEdge.cpp" />
+    <ClCompile Include="Voronoi\DelHull.cpp" />
+    <ClCompile Include="Voronoi\DelPoint.cpp" />
+    <ClCompile Include="Voronoi\DelTri.cpp" />
+    <ClCompile Include="Voronoi\Vector2.cpp" />
+    <ClCompile Include="Voronoi\Vector3.cpp" />
+    <ClCompile Include="Voronoi\VoronoiBiSector.cpp" />
+    <ClCompile Include="Voronoi\VoronoiDiagram.cpp" />
+    <ClCompile Include="Voronoi\VoronoiPoint.cpp" />
+    <ClCompile Include="Voronoi\VoronoiShape.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -207,6 +218,20 @@
     <ClInclude Include="VertexAttribute.h" />
     <ClInclude Include="VertexContainer.h" />
     <ClInclude Include="VertexLayout.h" />
+    <ClInclude Include="Voronoi\CycleLinkedList.h" />
+    <ClInclude Include="Voronoi\DelaunayMap.h" />
+    <ClInclude Include="Voronoi\DelDirectionalEdge.h" />
+    <ClInclude Include="Voronoi\DelHull.h" />
+    <ClInclude Include="Voronoi\DelPoint.h" />
+    <ClInclude Include="Voronoi\DelTri.h" />
+    <ClInclude Include="Voronoi\DLinkedList.h" />
+    <ClInclude Include="Voronoi\DynamicArray.h" />
+    <ClInclude Include="Voronoi\Vector2.h" />
+    <ClInclude Include="Voronoi\Vector3.h" />
+    <ClInclude Include="Voronoi\VoronoiBiSector.h" />
+    <ClInclude Include="Voronoi\VoronoiDiagram.h" />
+    <ClInclude Include="Voronoi\VoronoiPoint.h" />
+    <ClInclude Include="Voronoi\VoronoiShape.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

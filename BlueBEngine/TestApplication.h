@@ -4,6 +4,7 @@
 #include "Model.h"
 #include "Geometry.h"
 #include "TriangleRenderer.h"
+#include "Voronoi/DelaunayMap.h"
 
 using namespace BBB;
 
@@ -16,6 +17,8 @@ class TestApplication : public Application
 
 	// this is a mesh
 	IndexedMesh m_testMesh;
+
+	DelaunayMap m_delMap;
 
 	Camera2D m_camera;
 
@@ -48,7 +51,7 @@ public:
 	void OnMouseRelease(int button) override;
 
 	// Debugging shit
-	void DrawCircle(glm::vec2 centre, float size, int segmentCount);
+	void DrawCircle(LineRenderer& lines, glm::vec2 centre, float size, int segmentCount);
 
 	void SetupModel();
 
